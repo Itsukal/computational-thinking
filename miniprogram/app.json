@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/add/add",
+    "pages/index/index",
+    "pages/begin/begin",
+    "pages/start/start",
+    "pages/select/index",
+    "pages/end/end",
+    "pages/report1/report1"
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-progress": "@vant/weapp/progress/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+  },
+
+  "window": {
+    "navigationBarTitleText": "计算思维 评测工具",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

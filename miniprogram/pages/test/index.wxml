@@ -1,0 +1,2 @@
+<!--pages/test/index.wxml-->
+<van-button type="primary">ann</van-button>

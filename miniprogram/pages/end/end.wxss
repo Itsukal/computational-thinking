@@ -1,0 +1,39 @@
+page{
+  background-color: #E8F2F4;
+}
+.title{
+  font-family: 黑体;
+  font-size: 80rpx;
+  font-weight: 900;
+  padding: 40rpx;
+  line-height:100rpx;
+}
+.t1{
+  color:#19A9BD;
+  font-size:80rpx;
+  font-weight: 900;
+  padding-bottom: 20rpx;
+}
+.t2{
+  color:#127683;
+}
+.doneNum{
+  color:#127683;
+  font-family: 黑体;
+  font-size: 40rpx;
+  font-weight: 900;
+  padding: 20rpx;
+  text-align:center;
+}
+van-button{
+  position: absolute;
+  z-index: 2;
+  left:0;right:0;
+  margin: 0 auto;
+}
+.back{
+  bottom: 400rpx;
+}
+.grade{
+  bottom:200rpx;
+}

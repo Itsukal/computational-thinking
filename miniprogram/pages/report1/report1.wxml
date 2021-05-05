@@ -1,0 +1,16 @@
+<!--第一个结果页面-->
+<html>
+  <body>
+    <view class="title">
+      <text>\n</text>
+      <view class="t1">您的孩子已超过</view>
+      <view class="t2">全国??%的同龄人</view>
+    </view>
+    <view class="tip">点击此按钮以获取宝贝详细报告</view>
+    <view class="icon"></view><!--该行为icon占位符所用-->
+
+    <van-button size="large" color="#12AABE" style="width:600rpx" bindtap='toReport2' class="reportButton">详细报告</van-button>
+    <van-dialog id="van-dialog" />
+    <view class="bottomText">法律、版权信息 法律、版权信息 法律、版权信息 </view>
+  </body>
+</html>

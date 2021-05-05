@@ -1,0 +1,39 @@
+<!--pages/select/index.wxml-->
+
+<view wx:if="{{flag}}" class="container">
+    <!-- 文本框组件 -->
+    <view class="textBox">
+        <!-- 单选标签 -->
+        <view class="tag">
+            <van-tag mark type="danger" color="rgb(2,151,215)">单选</van-tag>
+        </view>
+        <!-- 题目文字区域 -->
+        <view  class="questionText">
+            {{questionArray.text}}
+        </view>
+    </view>
+     <!-- 图片占位符 -->
+    <view class="image">
+        <van-image  fit="widthFix" src="{{questionArray.fileID}}" width="100%" height="10rem"></van-image>
+    </view>
+
+    <!-- 选项框 -->
+    <view class='selection'>
+        <view class='{{view1}}' bindtap='view1Click'  id='1'>
+            A {{questionArray.selection[0]}}</view>
+        <view class='{{view2}}' bindtap='view2Click'  id='2'>
+            B {{questionArray.selection[1]}}</view>
+        <view class='{{view3}}' bindtap='view3Click'  id='3'>
+            C {{questionArray.selection[2]}}</view>
+        <view class='{{view4}}' bindtap='view4Click'  id='4'>
+            D {{questionArray.selection[3]}}</view>
+    </view>
+    <view class="empty"></view>
+    <!-- 底部组件 -->
+    <view class="ground">
+        <view class="time">{{timecount}}</view>
+        <view class="groundViewButton">
+            <button class="groundButton">提前交卷</button>
+        </view>
+    </view>
+</view>

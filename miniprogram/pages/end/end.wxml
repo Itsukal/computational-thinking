@@ -1,0 +1,13 @@
+<!--测试刚结束时候的页面-->
+<html>
+  <body>
+    <view class="title">
+      <text>\n</text>
+      <view class="t1">测试已结束</view>
+      <view class="t2">请小朋友将手机交还您的父母</view>
+    </view>
+    <view class="doneNum">已完成{{currentOfQuestion}}/{{amountOfQuestion}}</view>
+    <van-button class="back" size="large" style="width:600rpx" color="#12AABE" bindtap='返回答题'>返回，继续完成</van-button>
+    <van-button class="grade" size="large" style="width:600rpx" color="#12AABE" bindtap='toReport1'>查看目前成绩</van-button>
+    </body>
+</html>

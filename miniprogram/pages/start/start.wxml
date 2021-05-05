@@ -1,0 +1,11 @@
+<!--准备开始的界面-->
+<html>
+  <body>
+    <view class="title">
+      <text>\n</text>
+      <view class="t1">请将手机交给您的宝贝</view>
+      <view class="t2">测试将马上开始</view>
+    </view>
+    <van-button size="large" style="width:600rpx" color="#12AABE" bindtap='startQuestion'>我准备好了，开始挑战！</van-button>
+    </body>
+</html>

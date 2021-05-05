@@ -1,0 +1,32 @@
+page{
+  background-color: #E8F2F4;
+}
+.title{
+  font-family: 黑体;
+  font-size: 80rpx;
+  font-weight: 900;
+  padding: 40rpx;
+  line-height:100rpx;
+}
+.t1{
+  color:#19A9BD;
+}
+.t2{
+  color:#127683;
+}
+van-button{
+  position: absolute;
+  z-index: 2;
+  bottom: 300rpx;
+  left:0;right:0;
+  margin: 0 auto;
+}
+.bottomText{
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color:rgba(0,0,0,0.5);
+}
+

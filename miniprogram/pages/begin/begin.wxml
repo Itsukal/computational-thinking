@@ -1,0 +1,12 @@
+<!--刚进入小程序时候的界面-->
+<html>
+  <body>
+    <view class="title">
+      <text>\n\n</text>
+      <view class="t1">K12 计算思维</view>
+      <view class="t2">评测工具</view>
+    </view>
+    <van-button size="large" color="#12AABE" style="width:600rpx" bindtap='start'>开始测试</van-button>
+    <view class="bottomText">法律、版权信息 法律、版权信息 法律、版权信息 </view>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<view class="tit">
+  <text class="up">{{t}}</text>
+</view>
+
+<view class="my-chart">
+<!-- 发布时去掉该属性force-use-old-canvas=“true”，只用于真机调试显示 -->
+  <ec-canvas id="mychart-dom1" canvas-id="mychart1" ec="{{ec1}}" force-use-old-canvas="bo"></ec-canvas>
+</view>
+
+<view class="fenzhi">
+  <text class='tit25'>分治能力</text>
+  <view class="leftright">
+    <view class="updown">
+
+    <view class="five">
+      <view style="background-color:rgb({{f1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
+      <view style="background-color:rgb({{f2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
+      <view style="background-color:rgb({{f3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
+      <view style="background-color:rgb({{f4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
+      <view style="background-color:rgb({{f5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{f6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
+      <view style="background-color:rgb({{f7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
+      <view style="background-color:rgb({{f8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
+      <view style="background-color:rgb({{f9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
+      <view style="background-color:rgb({{f10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{f11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
+      <view style="background-color:rgb({{f12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
+      <view style="background-color:rgb({{f13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
+      <view style="background-color:rgb({{f14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
+      <view style="background-color:rgb({{f15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
+    </view>
+    
+  </view>
+    <text class='tit25r'>{{t1}}</text>
+  </view>
+</view>
+
+
+<view class="fenzhi">
+  <text class='tit25'>抽象能力</text>
+  <view class="leftright">
+    <view class="updown">
+
+      <view class="five">
+      <view style="background-color:rgb({{c1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
+      <view style="background-color:rgb({{c2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
+      <view style="background-color:rgb({{c3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
+      <view style="background-color:rgb({{c4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
+      <view  style="background-color:rgb({{c5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{c6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
+      <view style="background-color:rgb({{c7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
+      <view style="background-color:rgb({{c8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
+      <view style="background-color:rgb({{c9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
+      <view style="background-color:rgb({{c10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{c11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
+      <view style="background-color:rgb({{c12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
+      <view style="background-color:rgb({{c13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
+      <view style="background-color:rgb({{c14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
+      <view style="background-color:rgb({{c15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
+    </view>
+    
+  </view>
+    <text class='tit25r'>{{t1}}</text>
+  </view>
+</view>
+
+
+<view class="fenzhi">
+  <text class='tit25'>模式识别能力</text>
+  <view class="leftright">
+    <view class="updown">
+
+      <view class="five">
+      <view style="background-color:rgb({{m1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
+      <view style="background-color:rgb({{m2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
+      <view style="background-color:rgb({{m3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
+      <view style="background-color:rgb({{m4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
+      <view style="background-color:rgb({{m5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{m6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
+      <view style="background-color:rgb({{m7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
+      <view style="background-color:rgb({{m8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
+      <view style="background-color:rgb({{m9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
+      <view style="background-color:rgb({{m10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{m11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
+      <view style="background-color:rgb({{m12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
+      <view style="background-color:rgb({{m13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
+      <view style="background-color:rgb({{m14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
+      <view style="background-color:rgb({{m15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
+    </view>
+    
+  </view>
+    <text class='tit25r'>{{t1}}</text>
+  </view>
+</view>
+
+<view class="fenzhi">
+  <text class='tit25'>算法能力</text>
+  <view class="leftright">
+    <view class="updown">
+
+      <view class="five">
+      <view style="background-color:rgb({{s1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
+      <view style="background-color:rgb({{s2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
+      <view style="background-color:rgb({{s3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
+      <view style="background-color:rgb({{s4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
+      <view style="background-color:rgb({{s5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{s6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
+      <view style="background-color:rgb({{s7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
+      <view style="background-color:rgb({{s8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
+      <view style="background-color:rgb({{s9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
+      <view style="background-color:rgb({{s10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
+    </view>
+
+    <view class="five">
+      <view style="background-color:rgb({{s11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
+      <view style="background-color:rgb({{s12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
+      <view style="background-color:rgb({{s13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
+      <view style="background-color:rgb({{s14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
+      <view style="background-color:rgb({{s15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
+    </view>
+    
+  </view>
+    <text class='tit25r'>{{t1}}</text>
+  </view>
+</view>
+
+
+
+<view class='placeholder-view'></view>
+<view class="btn-view">
+  <button class='btn'>再试一次</button>
+  <button class='save' bindtap="toastShow">保存详细报告</button>
+  <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
+        链接已经复制到剪切板
+</toast>
+</view>
+
+
+
+  <!-- <view class="my-chart">
+  <ec-canvas id="mychart-dom2" canvas-id="mychart2" ec="{{ec2}}" force-use-old-canvas="bo"></ec-canvas>
+</view>
+  <view class="my-chart">
+  <ec-canvas id="mychart-dom3" canvas-id="mychart3" ec="{{ec3}}" force-use-old-canvas="bo"></ec-canvas>
+</view> -->

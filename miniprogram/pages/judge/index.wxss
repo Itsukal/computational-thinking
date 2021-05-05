@@ -1,0 +1,99 @@
+.my-chart{
+  width: 100%;
+  height: 600rpx;  
+  margin: 0 auto;
+}
+
+ec-canvas{
+  width: 100%;
+  height: 600rpx;
+}
+
+.tit{
+  padding:  100rpx 40rpx;
+}
+
+.up{
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.fenzhi{
+  padding: 10rpx 10rpx;
+  height:400rpx;
+  width:100%;
+  /* background-color:red; */
+}
+
+.tit25{
+  font-size:50rpx;
+}
+
+.updown{
+  height:320rpx;
+  width: 460rpx;
+  /* background-color: seagreen; */
+  flex-direction:column;
+}
+
+.five{
+  height:106.67 rpx;
+  width :40 rpx;
+  /* background-color: black; */
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 0;
+}
+
+.box{
+  font-size: 50rpx;
+  height:80rpx;
+  width:80rpx;
+  text-align: center;
+  /* vertical-align:center; */
+  /* background-color: rgb(a,200,200); */
+  /* background-color:red; */
+  margin: 0 10rpx;
+}
+
+
+
+.leftright{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: top;
+}
+
+.tit25r{
+  font-size:50rpx;
+  
+}
+
+.btn-view {
+  width: 100%;
+  padding: 20rpx 0;
+  background-color: #80dce8;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  left:10rpx;
+  /* width: 30%; */
+}
+
+.save{
+  /* width:40%; */
+  right:10rpx;
+  background-color: green;
+  color:white;
+}
+.placeholder-view {
+  width: 100%;
+  height: 150rpx;
+  /* background-color: #80dce8; */
+}
