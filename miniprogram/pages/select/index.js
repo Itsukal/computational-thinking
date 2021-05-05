@@ -1,8 +1,8 @@
 // pages/select/index.js
 var intt;
 const amoutnOfQuestion=10;
-
-
+const test=10;
+const nextTet=2323;
 Page({
 
   /**
