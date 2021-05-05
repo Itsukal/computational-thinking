@@ -3,6 +3,7 @@ var intt;
 const amoutnOfQuestion=10;
 const test=10;
 const nextTet=2323;
+const fafad=32232;
 Page({
 
   /**
