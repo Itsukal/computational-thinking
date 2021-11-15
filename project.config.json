@@ -1,0 +1,78 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "file",
+        "value": ".eslintrc.js"
+      }
+    ]
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.19.4",
+  "projectname": "%E9%AB%98%E4%BF%9D%E7%9C%9F%E9%A1%B5%E9%9D%A2",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "staticServerOptions": {
+    "baseURL": "",
+    "servePath": ""
+  },
+  "isGameTourist": false,
+  "appid": "wxd08a830dc414cf71",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": []
+    }
+  }
+}

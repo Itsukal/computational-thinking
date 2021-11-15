@@ -1,0 +1,81 @@
+<view class="TopRegion">
+  <image class="TopQue" src="../../UI/que.png" alt="" bindtap="showTip"></image>
+  <view class="TopTip" style="display: {{isShow}};">提示文案
+    <image class="TopClose" src="../../UI/close.png" bindtap="hideTip"></image>
+  </view>
+</view>
+<view class="MissionRegion">
+  <image class="MissionPath" src="../../UI/ban.png" wx:for="{{missionPathBan}}" style="margin-top: {{item.y}}rpx;margin-left: {{item.x}}rpx;"></image>
+  <image class="MissionPath" src="../../UI/pass.png" wx:for="{{missionPathPass}}" style="margin-top: {{item.y}}rpx;margin-left: {{item.x}}rpx;"></image>
+  <image class="MissionPath" src="../../UI/goal.png" style="margin-top: {{goal.y}}rpx;margin-left: {{goal.x}}rpx;"></image>
+  <image class="MissionPath" src="../../UI/man.png" style="margin-top: {{man.y}}rpx;margin-left: {{man.x}}rpx;"></image>
+</view>
+<view class="CodeRegion">
+  <view class="CodeRegionTop">
+    <image class="CodeRegionTopPencil" src="../../UI/pencil.png" alt=""></image>
+    操作区
+    <image class="CodeRegionTopReset" src="../../UI/reset.png"></image>
+  </view>
+</view>
+
+
+
+ <!-- 以下是ps代码区 -->
+ <movable-area class="ps">
+  <view class = "CodeStorage">
+
+    <!-- <image class="MissionPath" src="../../UI/ban.png" wx:for="{{missionPathBan}}" style="margin-top: {{item.y}}rpx;margin-left: {{item.x}}rpx;"></image> -->
+
+
+    <view class="Code" wx:for="{{objectArray}}" wx:key="id" id ="Code{{item.id}}" bindtouchstart="CopyEvent">
+      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="DirectionPoint" src="../../UI/icon{{item.id}}.png"></image>
+      <text class="TextDirection"> 向{{item.name}}</text>
+    </view>
+
+
+    <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" bindtouchstart="buttonStart"    catchtouchmove="buttonMove"
+    bindtouchend="buttonEnd"  >
+      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="DirectionPoint" src="../../UI/icon{{item.type}}.png"></image>
+      <text class="TextDirection"> 向{{item.name}}</text>
+    </movable-view>
+
+
+   <!--  <view class="Code" direction="all">
+      <image class="CodeImage" src="../../UI/拼图2.png"></image>      
+      <image class="DirectionPoint" src="../../UI/icon2.png"></image>
+      <text class="TextDirection"> 向下</text>
+    </view>
+
+
+    <view class="Code" direction="all">
+      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="DirectionPoint" src="../../UI/icon1.png"></image>
+      <text class="TextDirection"> 向上</text>
+    </view> -->
+
+
+
+  </view>
+
+
+  <view class = "CodeEditor">
+
+    <view class="StartCode" bindtouchend="buttonEnd">
+      <image class="CodeImage" src="../../UI/拼图1.png"></image>
+      <image class="StartCircle" src="../../UI/开始.png"></image>
+      <text class="TextStartUp"> 开始</text>
+    </view>
+
+  </view>
+
+
+</movable-area>
+
+<!-- 底部固定开始按钮 -->
+<button class="StartBut" bindtap="start">
+  <image class="CodeImage" src="../../UI/开始块.png"></image>
+  <image class="StartCircle" src="../../UI/开始运行.png"></image>
+  <text class="TextStartDown"> 开始</text>
+</button>
