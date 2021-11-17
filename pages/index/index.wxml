@@ -28,7 +28,7 @@
 
 
     <view class="Code" wx:for="{{objectArray}}" wx:key="id" id ="Code{{item.id}}" bindtouchstart="CopyEvent">
-      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="CodeImage" src="../../UI/Code2.png"></image>
       <image class="DirectionPoint" src="../../UI/icon{{item.id}}.png"></image>
       <text class="TextDirection"> 向{{item.name}}</text>
     </view>
@@ -36,21 +36,21 @@
 
     <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" bindtouchstart="buttonStart"    catchtouchmove="buttonMove"
     bindtouchend="buttonEnd"  >
-      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="CodeImage" src="../../UI/Code2.png"></image>
       <image class="DirectionPoint" src="../../UI/icon{{item.type}}.png"></image>
       <text class="TextDirection"> 向{{item.name}}</text>
     </movable-view>
 
 
    <!--  <view class="Code" direction="all">
-      <image class="CodeImage" src="../../UI/拼图2.png"></image>      
+      <image class="CodeImage" src="../../UI/Code2.png"></image>      
       <image class="DirectionPoint" src="../../UI/icon2.png"></image>
       <text class="TextDirection"> 向下</text>
     </view>
 
 
     <view class="Code" direction="all">
-      <image class="CodeImage" src="../../UI/拼图2.png"></image>
+      <image class="CodeImage" src="../../UI/Code2.png"></image>
       <image class="DirectionPoint" src="../../UI/icon1.png"></image>
       <text class="TextDirection"> 向上</text>
     </view> -->
@@ -63,8 +63,8 @@
   <view class = "CodeEditor">
 
     <view class="StartCode" bindtouchend="buttonEnd">
-      <image class="CodeImage" src="../../UI/拼图1.png"></image>
-      <image class="StartCircle" src="../../UI/开始.png"></image>
+      <image class="CodeImage" src="../../UI/Code1.png"></image>
+      <image class="StartCircle" src="../../UI/Start.png"></image>
       <text class="TextStartUp"> 开始</text>
     </view>
 
@@ -75,7 +75,7 @@
 
 <!-- 底部固定开始按钮 -->
 <button class="StartBut" bindtap="start">
-  <image class="CodeImage" src="../../UI/开始块.png"></image>
-  <image class="StartCircle" src="../../UI/开始运行.png"></image>
+  <image class="CodeImage" src="../../UI/StartBlock.png"></image>
+  <image class="StartCircle" src="../../UI/StartRun.png"></image>
   <text class="TextStartDown"> 开始</text>
 </button>

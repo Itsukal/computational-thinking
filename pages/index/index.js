@@ -63,7 +63,7 @@ var goal = [6, 1.5]; //这个坐标代表目标的位置
 
 Page({
   data: {
-    info: {},
+    info: {},//存储可移动代码块
     isShow: "block", //代表TopTip模块的display属性值，用于控制顶部提示文案是否展示
     missionPathPass: [], //代表地图中路径方块的坐标，用于设立样式
     missionPathBan: [], //代表地图中非通行方块的坐标，用于设立样式
