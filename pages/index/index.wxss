@@ -115,7 +115,7 @@ Page{
   margin: 40rpx 27rpx 0rpx 27rpx;
   /* 上右下左 */
   display: inline-block;
-  /* background-color:yellowgreen; */
+  background-color:yellowgreen;
   /* float: right; */
 }
 

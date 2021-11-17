@@ -12,12 +12,13 @@ var CodeWidth=70;
 //pixelRatio1是用于px和rpx相互转化 px*pixelRatio1=rpx
 var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth; 
 //生成新的代码块的函数
-function Detail(id, x,y, type, name) {
+function Detail(id, x,y, type, name,bo) {
   this.id = id;
   this.x = x;
   this.y = y;
   this.type=type;
   this.name=name;
+  this.bo=bo;
 }
 function Info() {
   this.details = [];
@@ -107,6 +108,38 @@ Page({
   // 事件处理函数
   onLoad() {
     this.init();
+    let info = this.data.info;
+    for (var i=0;i<4;i++)
+    {
+      var name;
+      var y;
+      switch(i+1)
+      {
+        case 1:
+          name="上";
+          y=400;
+          break;
+        case 2:
+          name="下";
+          y=280;
+          break;
+        case 3:
+          name="左";
+          y=160;
+          break;
+        case 4:
+          name="右";
+          y=40;
+          break;
+        };
+        info.details.push(new Detail(i,27,y,i+1,name));
+    }
+    
+    this.setData({
+      info: info
+    });
+    console.log(info);
+
     //初始化地图，每个路径方块的长宽都是80rpx，所以坐标要乘以80
     //先铺设通行的方块
     console.log("pppp"+pixelRatio1);
@@ -219,6 +252,52 @@ Page({
 
 
 //ps
+
+
+//复制函数(点击复制，还不能做到拖动复制)
+CopyEvent:function(e)
+{
+  console.log(e);
+  let info=this.data.info;
+  var newid=e.currentTarget.id;
+  // console.log(type);
+  var num=0;
+  for (var i=0;i<info.details.length;i++)
+    if ("MoveCode"+i==newid)
+    num=i;
+  console.log(num);
+  num =info.details[num].type;
+    var len=info.details.length;
+    console.log(len);
+    var name;
+    var y;
+    switch(num)
+    {
+      case 1:
+        name="上";
+        y=400;
+        break;
+      case 2:
+        name="下";
+        y=280;
+        break;
+      case 3:
+        name="左";
+        y=160;
+        break;
+      case 4:
+        name="右";
+        y=40;
+        break;
+      }
+    info.details.push(new Detail(len,27,y,num,name));
+    this.setData({
+      info: info
+    });
+    console.log(this.data.info);
+},
+
+
 //点击代码块的监听函数
 buttonStart: function (e) {
   startPoint = e.touches[0];//获取拖动
@@ -231,6 +310,8 @@ buttonStart: function (e) {
     if (tmp_id==tmp)
     clicknum=i;
   }
+
+  this.CopyEvent(e);
 },
 
 //移动代码块的函数
@@ -333,49 +414,6 @@ buttonEnd: function (e) {
   }
 },
 
-
-//复制函数(点击复制，还不能做到拖动复制)
-CopyEvent:function(e)
-{
-  console.log(e);
-  var type=e.currentTarget.id;
-  console.log(type);
-  var num=0;
-  for (var i=1;i<=4;i++)
-    if ("Code"+i==type)
-    num=i;
-  console.log(num);
-
-    let info = this.data.info;
-    var len=info.details.length;
-    console.log(len);
-    var name;
-    var y;
-    switch(num)
-    {
-      case 1:
-        name="上";
-        y=400;
-        break;
-      case 2:
-        name="下";
-        y=280;
-        break;
-      case 3:
-        name="左";
-        y=160;
-        break;
-      case 4:
-        name="右";
-        y=40;
-        break;
-      }
-    info.details.push(new Detail(len,27,y,num,name));
-    this.setData({
-      info: info
-    });
-    console.log(this.data.info);
-},
 
 start:function()
 {

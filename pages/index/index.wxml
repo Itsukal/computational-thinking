@@ -27,11 +27,11 @@
     <!-- <image class="MissionPath" src="../../UI/ban.png" wx:for="{{missionPathBan}}" style="margin-top: {{item.y}}rpx;margin-left: {{item.x}}rpx;"></image> -->
 
 
-    <view class="Code" wx:for="{{objectArray}}" wx:key="id" id ="Code{{item.id}}" bindtouchstart="CopyEvent">
+    <!-- <view class="Code" wx:for="{{objectArray}}" wx:key="id" id ="Code{{item.id}}" bindtouchstart="CopyEvent">
       <image class="CodeImage" src="../../UI/Code2.png"></image>
       <image class="DirectionPoint" src="../../UI/icon{{item.id}}.png"></image>
       <text class="TextDirection"> 向{{item.name}}</text>
-    </view>
+    </view> -->
 
 
     <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" bindtouchstart="buttonStart"    catchtouchmove="buttonMove"
