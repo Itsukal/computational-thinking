@@ -6,20 +6,21 @@
 //每块的高度为80rpx 宽度为160rpx(含空部分)
 //每个代码块之前高度差为70rpx
 //规定 1->上 2->下 3->左 4->右
-var firstx=285;
-var firsty=110;
-var CodeWidth=70;
+var firstx = 285;
+var firsty = 110;
+var CodeWidth = 70;
 //pixelRatio1是用于px和rpx相互转化 px*pixelRatio1=rpx
-var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth; 
+var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;
 //生成新的代码块的函数
-function Detail(id, x,y, type, name,bo) {
+function Detail(id, x, y, type, name, bo) {
   this.id = id;
   this.x = x;
   this.y = y;
-  this.type=type;
-  this.name=name;
-  this.bo=bo;
+  this.type = type;
+  this.name = name;
+  this.bo = bo;
 }
+
 function Info() {
   this.details = [];
 }
@@ -36,7 +37,7 @@ var startPoint;
 
 //这个地图的布局是一个8*4的地图，即宽度最多容纳8个方块，高度最多容纳4个方块，在给出地图的时候，使用坐标形式就行，地图会自动生成，且注意坐标点可以用小数形式表示
 //missionPathPass代表通行方块，missionPathBan代表不通行方块
- 
+
 var missionPathPass = [
   [2, 1.5],
   [3, 1.5],
@@ -64,17 +65,18 @@ var goal = [6, 1.5]; //这个坐标代表目标的位置
 
 Page({
   data: {
-    info: {},//存储可移动代码块
+    info: {}, //存储可移动代码块
     isShow: "block", //代表TopTip模块的display属性值，用于控制顶部提示文案是否展示
     missionPathPass: [], //代表地图中路径方块的坐标，用于设立样式
     missionPathBan: [], //代表地图中非通行方块的坐标，用于设立样式
+
+    resetRotate: 0, //reset按键的方向，每点击时候进行180度翻转
 
     //ps
     //数值初始化
     //x、y记录位置
 
-    objectArray: [
-     {
+    objectArray: [{
       id: 4,
       name: "右"
     }, {
@@ -109,32 +111,30 @@ Page({
   onLoad() {
     this.init();
     let info = this.data.info;
-    for (var i=0;i<4;i++)
-    {
+    for (var i = 0; i < 4; i++) {
       var name;
       var y;
-      switch(i+1)
-      {
+      switch (i + 1) {
         case 1:
-          name="上";
-          y=400;
+          name = "上";
+          y = 400;
           break;
         case 2:
-          name="下";
-          y=280;
+          name = "下";
+          y = 280;
           break;
         case 3:
-          name="左";
-          y=160;
+          name = "左";
+          y = 160;
           break;
         case 4:
-          name="右";
-          y=40;
+          name = "右";
+          y = 40;
           break;
-        };
-        info.details.push(new Detail(i,27,y,i+1,name,1));
+      };
+      info.details.push(new Detail(i, 27, y, i + 1, name, 1));
     }
-    
+
     this.setData({
       info: info
     });
@@ -142,7 +142,7 @@ Page({
 
     //初始化地图，每个路径方块的长宽都是80rpx，所以坐标要乘以80
     //先铺设通行的方块
-    console.log("pppp"+pixelRatio1);
+    console.log("pppp" + pixelRatio1);
     for (var i = 0; i < missionPathPass.length; i++) {
       var s1 = 'missionPathPass[' + i + ']';
       this.setData({
@@ -248,194 +248,193 @@ Page({
   turnRight: function () {
     return this.ChangePos(4);
   },
+  //reset按键的翻转函数，参数为0，进行复原，参数为1，进行180翻转
+  resetChange: function (op) {
+    if (op == 0) this.setData({
+      resetRotate: 0
+    });
+    else if (op == 1) this.setData({
+      resetRotate: 180
+    });
+  },
+  //reset按键的点击函数
+  reset: function () {
+    //reset功能还没写，以下是按键翻转效果
+    this.resetChange(1);
+    var that = this;
+    setTimeout(function () {
+      that.resetChange(0);
+    }, 100) //延迟时间 这里是1秒
+  },
 
 
 
-//ps
+
+  //ps
 
 
-//复制函数(点击复制，还不能做到拖动复制)
-CopyEvent:function(e)
-{
-  console.log(e);
-  let info=this.data.info;
-  var newid=e.currentTarget.id;
-  // console.log(type);
-  var num=0;
-  for (var i=0;i<info.details.length;i++)
-    if ("MoveCode"+i==newid)
-    num=i;
-  if (info.details[num].bo==0) return;
-  info.details[num].bo=0;
-  console.log(num);
-  num =info.details[num].type;
-    var len=info.details.length;
+  //复制函数(点击复制，还不能做到拖动复制)
+  CopyEvent: function (e) {
+    console.log(e);
+    let info = this.data.info;
+    var newid = e.currentTarget.id;
+    // console.log(type);
+    var num = 0;
+    for (var i = 0; i < info.details.length; i++)
+      if ("MoveCode" + i == newid)
+        num = i;
+    if (info.details[num].bo == 0) return;
+    info.details[num].bo = 0;
+    console.log(num);
+    num = info.details[num].type;
+    var len = info.details.length;
     console.log(len);
     var name;
     var y;
-    switch(num)
-    {
+    switch (num) {
       case 1:
-        name="上";
-        y=400;
+        name = "上";
+        y = 400;
         break;
       case 2:
-        name="下";
-        y=280;
+        name = "下";
+        y = 280;
         break;
       case 3:
-        name="左";
-        y=160;
+        name = "左";
+        y = 160;
         break;
       case 4:
-        name="右";
-        y=40;
+        name = "右";
+        y = 40;
         break;
-      }
-    info.details.push(new Detail(len,27,y,num,name,1));
+    }
+    info.details.push(new Detail(len, 27, y, num, name, 1));
     this.setData({
       info: info
     });
     console.log(this.data.info);
-},
+  },
 
 
-//点击代码块的监听函数
-buttonStart: function (e) {
-  startPoint = e.touches[0];//获取拖动
-  //console.log(e);
-  var tmp=e.currentTarget.id;
+  //点击代码块的监听函数
+  buttonStart: function (e) {
+    startPoint = e.touches[0]; //获取拖动
+    //console.log(e);
+    var tmp = e.currentTarget.id;
 
-  for (var i=0;i<=this.data.info.details.length;i++)
-  {
-    var tmp_id="MoveCode"+String(i)
-    if (tmp_id==tmp)
-    clicknum=i;
-  }
+    for (var i = 0; i <= this.data.info.details.length; i++) {
+      var tmp_id = "MoveCode" + String(i)
+      if (tmp_id == tmp)
+        clicknum = i;
+    }
 
-  this.CopyEvent(e);
-},
+    this.CopyEvent(e);
+  },
 
-//移动代码块的函数
-buttonMove: function(e){ 
-  var endPoint = e.touches[e.touches.length - 1]//获取拖动结束点
-  //计算在X轴上拖动的距离和在Y轴上拖动的距离
-  var translateX = endPoint.clientX - startPoint.clientX
-  var translateY = endPoint.clientY - startPoint.clientY
-  translateX = translateX * pixelRatio1;
-  translateY = translateY * pixelRatio1;
-  startPoint = endPoint//重置开始位置
-  
-  var y = this.data.info.details[clicknum].y + translateY;
-  var x = this.data.info.details[clicknum].x + translateX;
-  // info.details[clicknum].x=x;
-  // info.details[clicknum].y=y;
-  var newx='info.details['+clicknum+'].x';
-  var newy='info.details['+clicknum+'].y';
-  //修改代码块位置
-  this.setData({
-    [newx]:x,
-    [newy]:y,
-  })
-},
+  //移动代码块的函数
+  buttonMove: function (e) {
+    var endPoint = e.touches[e.touches.length - 1] //获取拖动结束点
+    //计算在X轴上拖动的距离和在Y轴上拖动的距离
+    var translateX = endPoint.clientX - startPoint.clientX
+    var translateY = endPoint.clientY - startPoint.clientY
+    translateX = translateX * pixelRatio1;
+    translateY = translateY * pixelRatio1;
+    startPoint = endPoint //重置开始位置
 
-//松开鼠标后判定吸附函数
-buttonEnd: function (e) {
-  let info=this.data.info;
-  var newx='info.details['+clicknum+'].x';
-  var newy='info.details['+clicknum+'].y';
-  var x=info.details[clicknum].x;
-  var y=info.details[clicknum].y;
-  var magnet=0;
-  console.log(info.details);
-  // console.log(clicknum);
-  // console.log(info.details.length);
-  for (var i=0;i<info.details.length;i++)
-  {
-    // console.log("aaaaaaaaaaaaaaaaaa");
-    if(i!=clicknum && Math.abs(x-info.details[i].x)<=40)
-    {
-      // console.log(i);
-      if (y-info.details[i].y>40 && y-info.details[i].y<100)
-      {
-        magnet=1;
-        var upx=info.details[i].x;
+    var y = this.data.info.details[clicknum].y + translateY;
+    var x = this.data.info.details[clicknum].x + translateX;
+    // info.details[clicknum].x=x;
+    // info.details[clicknum].y=y;
+    var newx = 'info.details[' + clicknum + '].x';
+    var newy = 'info.details[' + clicknum + '].y';
+    //修改代码块位置
+    this.setData({
+      [newx]: x,
+      [newy]: y,
+    })
+  },
+
+  //松开鼠标后判定吸附函数
+  buttonEnd: function (e) {
+    let info = this.data.info;
+    var newx = 'info.details[' + clicknum + '].x';
+    var newy = 'info.details[' + clicknum + '].y';
+    var x = info.details[clicknum].x;
+    var y = info.details[clicknum].y;
+    var magnet = 0;
+    console.log(info.details);
+    // console.log(clicknum);
+    // console.log(info.details.length);
+    for (var i = 0; i < info.details.length; i++) {
+      // console.log("aaaaaaaaaaaaaaaaaa");
+      if (i != clicknum && Math.abs(x - info.details[i].x) <= 40) {
+        // console.log(i);
+        if (y - info.details[i].y > 40 && y - info.details[i].y < 100) {
+          magnet = 1;
+          var upx = info.details[i].x;
 
 
-        var isdown=0;
-          for (var j=0;j<info.details.length;j++)
-          {
-            if (info.details[i].x== info.details[j].x && info.details[i].y==info.details[j].y-CodeWidth)
-            isdown=1;
+          var isdown = 0;
+          for (var j = 0; j < info.details.length; j++) {
+            if (info.details[i].x == info.details[j].x && info.details[i].y == info.details[j].y - CodeWidth)
+              isdown = 1;
           }
-          console.log(isdown,"isdown");
-          if (isdown==0)
-          {
-            var upy=info.details[i].y+CodeWidth;
+          console.log(isdown, "isdown");
+          if (isdown == 0) {
+            var upy = info.details[i].y + CodeWidth;
             this.setData({
-              [newx]:upx,
-              [newy]:upy,
+              [newx]: upx,
+              [newy]: upy,
             });
-          }
-          else
-          {
-            this .setData({
-              [newx]:upx+200,
+          } else {
+            this.setData({
+              [newx]: upx + 200,
             })
           }
 
 
-        // console.log("sdasfasas");
+          // console.log("sdasfasas");
+        }
       }
     }
-  }
 
-  if (!magnet)
-  {
-    if (Math.abs(x-285)<=40 && Math.abs(y-110)<=40)
-    {
-      var isdown=0;
-      for (var i=0;i<info.details.length;i++)
-      {
-        if (i!=clicknum && info.details[i].x==285 && info.details[i].y==110)
-        isdown=1;
-      }
-      if (!isdown)
-      {
-      this.setData({
-        [newx]:firstx,
-        [newy]:firsty,
-      });}
-      else{
-        this.setData({
-          [newx]:firstx+200,
-          [newy]:firsty,
-        })
+    if (!magnet) {
+      if (Math.abs(x - 285) <= 40 && Math.abs(y - 110) <= 40) {
+        var isdown = 0;
+        for (var i = 0; i < info.details.length; i++) {
+          if (i != clicknum && info.details[i].x == 285 && info.details[i].y == 110)
+            isdown = 1;
+        }
+        if (!isdown) {
+          this.setData({
+            [newx]: firstx,
+            [newy]: firsty,
+          });
+        } else {
+          this.setData({
+            [newx]: firstx + 200,
+            [newy]: firsty,
+          })
+        }
       }
     }
-  }
-},
+  },
 
 
-start:function()
-{
-  var info=this.data.info;
-  for (var i=0;i<info.details.length;i++)
-  queue[i]=0;
+  start: function () {
+    var info = this.data.info;
+    for (var i = 0; i < info.details.length; i++)
+      queue[i] = 0;
 
-  for (var i=0;i<info.details.length;i++)
-  {
-    if (info.details[i].x==firstx)
-    {
-      if ((info.details[i].y-firsty)%70==0 && info.details[i].x==firstx)
-      queue[(info.details[i].y-firsty)/70]=info.details[i].type;
+    for (var i = 0; i < info.details.length; i++) {
+      if (info.details[i].x == firstx) {
+        if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx)
+          queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
+      }
     }
+    console.log(queue);
   }
-  console.log(queue);
-}
 
-//ps
+  //ps
 })
-
-
-

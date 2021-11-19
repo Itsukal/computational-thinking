@@ -14,7 +14,7 @@
   <view class="CodeRegionTop">
     <image class="CodeRegionTopPencil" src="../../UI/pencil.png" alt=""></image>
     操作区
-    <image class="CodeRegionTopReset" src="../../UI/reset.png"></image>
+    <image class="CodeRegionTopReset" src="../../UI/reset.png" style="transform:rotate({{resetRotate}}deg);" bindtap="reset"></image>
   </view>
 </view>
 
