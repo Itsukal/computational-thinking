@@ -132,7 +132,7 @@ Page({
           y=40;
           break;
         };
-        info.details.push(new Detail(i,27,y,i+1,name));
+        info.details.push(new Detail(i,27,y,i+1,name,1));
     }
     
     this.setData({
@@ -265,6 +265,8 @@ CopyEvent:function(e)
   for (var i=0;i<info.details.length;i++)
     if ("MoveCode"+i==newid)
     num=i;
+  if (info.details[num].bo==0) return;
+  info.details[num].bo=0;
   console.log(num);
   num =info.details[num].type;
     var len=info.details.length;
@@ -290,7 +292,7 @@ CopyEvent:function(e)
         y=40;
         break;
       }
-    info.details.push(new Detail(len,27,y,num,name));
+    info.details.push(new Detail(len,27,y,num,name,1));
     this.setData({
       info: info
     });

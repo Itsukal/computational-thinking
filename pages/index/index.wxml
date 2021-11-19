@@ -70,12 +70,12 @@
 
   </view>
 
-
 </movable-area>
 
+
 <!-- 底部固定开始按钮 -->
-<button class="StartBut" bindtap="start">
+<view class="StartBut" bindtap="start">
   <image class="CodeImage" src="../../UI/StartBlock.png"></image>
   <image class="StartCircle" src="../../UI/StartRun.png"></image>
   <text class="TextStartDown"> 开始</text>
-</button>
+</view>

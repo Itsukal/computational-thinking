@@ -178,6 +178,7 @@ Page{
   position:fixed; 
   bottom:50rpx;
   right:70rpx;
+  margin: 0;
   width: 180rpx;
   height:80rpx;
 }
@@ -199,6 +200,6 @@ Page{
   margin: 0rpx 0rpx 0rpx 0rpx;
   /* 上右下左 */
   display: inline-block;
-  background-color:yellowgreen;
+  /* background-color:yellowgreen; */
   /* float: right; */
 }
