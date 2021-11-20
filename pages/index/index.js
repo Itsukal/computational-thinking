@@ -1,3 +1,5 @@
+var isShow = true; //代表顶部提示文案是否展示
+
 //ps
 //!!!!需要点击左边的按钮才能生成一个新的代码块
 //增加了背景颜色便于区分，如果要去掉，请转到css文件的MoveCode，把background-color注释掉
@@ -66,7 +68,7 @@ var goal = [6, 1.5]; //这个坐标代表目标的位置
 Page({
   data: {
     info: {}, //存储可移动代码块
-    isShow: "block", //代表TopTip模块的display属性值，用于控制顶部提示文案是否展示
+    topTipWidth: "0%", //代表TopTip模块的宽度，用于控制顶部提示文案是否展示
     missionPathPass: [], //代表地图中路径方块的坐标，用于设立样式
     missionPathBan: [], //代表地图中非通行方块的坐标，用于设立样式
 
@@ -140,6 +142,13 @@ Page({
   },
   // 事件处理函数
   onLoad() {
+    //初始化顶部提示文案是否展示
+    if (isShow) {
+      this.setData({
+        topTipWidth: "84%"
+      })
+    }
+
     //初始化代码区
     this.init();
 
@@ -178,17 +187,25 @@ Page({
   },
   //用于展示顶部Tip的函数
   showTip: function () {
-    this.setData({
-      isShow: "block"
-    });
-    //console.log(this.data.isShow);
+    if (isShow == true) return;
+    isShow = true;
+    for (let i = 0; i <= 84; i += 1) {
+      let tmp = i + "%";
+      this.setData({
+        topTipWidth: tmp
+      })
+    }
   },
   //用于隐藏顶部Tip的函数
   hideTip: function () {
-    this.setData({
-      isShow: "none"
-    });
-    //console.log(this.data.isShow);
+    if (isShow == false) return;
+    isShow = false;
+    for (let i = 84; i >= 0; i -= 1) {
+      let tmp = i + "%";
+      this.setData({
+        topTipWidth: tmp
+      })
+    }
   },
   //用于将人物的位置坐标转化为样式数据
   updateManPos: function () {

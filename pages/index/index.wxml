@@ -1,6 +1,6 @@
 <view class="TopRegion">
   <image class="TopQue" src="../../UI/que.png" alt="" bindtap="showTip"></image>
-  <view class="TopTip" style="display: {{isShow}};">提示文案
+  <view class="TopTip" style="width: {{topTipWidth}}">这里是用于提示小朋友进行操作的顶部提示文案
     <image class="TopClose" src="../../UI/close.png" bindtap="hideTip"></image>
   </view>
 </view>
@@ -20,9 +20,9 @@
 
 
 
- <!-- 以下是ps代码区 -->
- <movable-area class="ps">
-  <view class = "CodeStorage">
+<!-- 以下是ps代码区 -->
+<movable-area class="ps">
+  <view class="CodeStorage">
 
     <!-- <image class="MissionPath" src="../../UI/ban.png" wx:for="{{missionPathBan}}" style="margin-top: {{item.y}}rpx;margin-left: {{item.x}}rpx;"></image> -->
 
@@ -34,15 +34,14 @@
     </view> -->
 
 
-    <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" bindtouchstart="buttonStart"    catchtouchmove="buttonMove"
-    bindtouchend="buttonEnd">
+    <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" bindtouchstart="buttonStart" catchtouchmove="buttonMove" bindtouchend="buttonEnd">
       <image class="CodeImage" src="../../UI/Code2.png"></image>
       <image class="DirectionPoint" src="../../UI/icon{{item.type}}.png"></image>
       <text class="TextDirection"> 向{{item.name}}</text>
     </movable-view>
 
 
-   <!--  <view class="Code" direction="all">
+    <!--  <view class="Code" direction="all">
       <image class="CodeImage" src="../../UI/Code2.png"></image>      
       <image class="DirectionPoint" src="../../UI/icon2.png"></image>
       <text class="TextDirection"> 向下</text>
@@ -54,13 +53,10 @@
       <image class="DirectionPoint" src="../../UI/icon1.png"></image>
       <text class="TextDirection"> 向上</text>
     </view> -->
-
-
-
   </view>
 
 
-  <view class = "CodeEditor">
+  <view class="CodeEditor">
 
     <view class="StartCode" bindtouchend="buttonEnd">
       <image class="CodeImage" src="../../UI/Code1.png"></image>
