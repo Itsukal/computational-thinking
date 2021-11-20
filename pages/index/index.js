@@ -1,3 +1,4 @@
+var scrHeight;//记录屏幕的高度，后续会用于计算代码区的高度
 var isShow = true; //代表顶部提示文案是否展示
 
 //ps
@@ -67,6 +68,10 @@ var goal = [6, 1.5]; //这个坐标代表目标的位置
 
 Page({
   data: {
+    codeRegionHeight: 0,//记录代码操作区高度
+    binBackgroundState: "none",//用于表示垃圾桶区域是否显示，none为不显示，flex为显示
+    binState: "close",//用于记录垃圾桶图标中垃圾桶是否打开
+
     info: {}, //存储可移动代码块
     topTipWidth: "0%", //代表TopTip模块的宽度，用于控制顶部提示文案是否展示
     missionPathPass: [], //代表地图中路径方块的坐标，用于设立样式
@@ -103,45 +108,16 @@ Page({
     }, //代表目标位置，用于设立样式
   },
 
-  //初始化操作区界面
-  init: function () {
-    let that = this;
-    this.setData({
-      info: new Info(),
-    });
-
-    let info = this.data.info;
-    for (var i = 0; i < 4; i++) {
-      var name;
-      var y;
-      switch (i + 1) {
-        case 1:
-          name = "上";
-          y = 400;
-          break;
-        case 2:
-          name = "下";
-          y = 280;
-          break;
-        case 3:
-          name = "左";
-          y = 160;
-          break;
-        case 4:
-          name = "右";
-          y = 40;
-          break;
-      };
-      info.details.push(new Detail(i, 27, y, i + 1, name, 1));
-    }
-
-    this.setData({
-      info: info
-    });
-    //console.log(info);
-  },
   // 事件处理函数
   onLoad() {
+    //获取屏幕高度，用于计算代码区的高度
+    wx.getSystemInfo({
+      success: function (res) {
+        scrHeight = res.windowHeight;
+      }
+    })
+    this.setData({ codeRegionHeight: scrHeight - 208 })
+
     //初始化顶部提示文案是否展示
     if (isShow) {
       this.setData({
@@ -185,6 +161,9 @@ Page({
     //更新人物位置
     this.updateManPos();
   },
+
+  //*************************************
+  //以下代码为任务区域相关代码
   //用于展示顶部Tip的函数
   showTip: function () {
     if (isShow == true) return;
@@ -268,6 +247,11 @@ Page({
   turnRight: function () {
     return this.ChangePos(4);
   },
+
+  //*************************************
+
+  //*************************************
+  //以下代码为代码操作区域相关代码
   //reset按键的翻转函数，参数为0，进行复原，参数为1，进行180翻转
   resetChange: function (op) {
     if (op == 0) this.setData({
@@ -289,10 +273,45 @@ Page({
   },
 
 
-
-
   //ps
 
+  //初始化操作区界面
+  init: function () {
+    let that = this;
+    this.setData({
+      info: new Info(),
+    });
+
+    let info = this.data.info;
+    for (var i = 0; i < 4; i++) {
+      var name;
+      var y;
+      switch (i + 1) {
+        case 1:
+          name = "上";
+          y = 400;
+          break;
+        case 2:
+          name = "下";
+          y = 280;
+          break;
+        case 3:
+          name = "左";
+          y = 160;
+          break;
+        case 4:
+          name = "右";
+          y = 40;
+          break;
+      };
+      info.details.push(new Detail(i, 27, y, i + 1, name, 1));
+    }
+
+    this.setData({
+      info: info
+    });
+    //console.log(info);
+  },
 
   //复制函数，且复制的是操作区左边供选择的代码块
   CopyEvent: function (e) {
@@ -336,7 +355,6 @@ Page({
     });
     //console.log(this.data.info);
   },
-
 
   //点击代码块的监听函数，目的是获取当前点击块(clicknum)
   buttonStart: function (e) {
@@ -464,7 +482,18 @@ Page({
       }
     }
     console.log(queue);
-  }
+  },
 
   //ps
+
+  //用于设置垃圾桶区域是否显示，参数为1时设为显示，为0时设为不显示
+  ChangeBinBackgroundState: function (state) {
+    if (state == 1) {
+      this.setData({ binBackgroundState: "flex" })
+    }
+    else {
+      this.setData({ binBackgroundState: "none" })
+    }
+  },
 })
+

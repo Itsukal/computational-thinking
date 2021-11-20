@@ -92,13 +92,11 @@ Page {
 .ps {
   display: flex;
   flex-flow: row;
-  height: 1000px;
   width: 750rpx;
 }
 
 
 .CodeStorage {
-  height: 1000px;
   width: 28%;
   background-color: #FF8AC4;
   border-width: 0;
@@ -107,7 +105,6 @@ Page {
 }
 
 .CodeEditor {
-  height: 1000px;
   width: 72%;
   /* background-color:; */
   border-width: 0;
@@ -150,6 +147,25 @@ Page {
   top: -100rpx;
   left: 15rpx;
   font-size: 35rpx;
+}
+
+.BinBackground{
+  width: 100%;
+  background-color: #FF8AC4;
+  border-width: 0;
+  z-index: 2;
+}
+
+.BinRegion {
+  margin:10vw auto;
+  height: 20vw;
+  width: 20vw;
+  z-index: 3;
+}
+
+.BinLogo {
+  height: 20vw;
+  width: 20vw;
 }
 
 .StartCode {
