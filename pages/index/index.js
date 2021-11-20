@@ -302,7 +302,6 @@ Page({
       binState: "close"
     })
   },
-
   //ps
 
   //初始化操作区界面
@@ -470,7 +469,9 @@ Page({
     //如果触碰到了左边区域：1、横坐标小于disgardRegion，进行清除；2、横坐标大于disgardRegion小于leftRegion，将代码块弹出左边区域
     if (x < disgardRegion) {
       //x坐标小于disgardRegion，意味着代码块进行清除
+
       //待实现
+
       return; //清除后不应接着进行下面的磁吸判断，因此结束函数
     } else if (x < leftRegion) {
       //将代码块弹出左边区域
@@ -561,16 +562,4 @@ Page({
 
   //ps
 
-  //用于设置垃圾桶区域是否显示，参数为1时设为显示，为0时设为不显示
-  ChangeBinBackgroundState: function (state) {
-    if (state == 1) {
-      this.setData({
-        binBackgroundState: "flex"
-      })
-    } else {
-      this.setData({
-        binBackgroundState: "none"
-      })
-    }
-  },
 })
