@@ -1,43 +1,10 @@
-var scrHeight;//记录屏幕的高度，后续会用于计算代码区的高度
+var scrHeight; //记录屏幕的高度，后续会用于计算代码区的高度
 var isShow = true; //代表顶部提示文案是否展示
 
-//ps
-//!!!!需要点击左边的按钮才能生成一个新的代码块
-//增加了背景颜色便于区分，如果要去掉，请转到css文件的MoveCode，把background-color注释掉
-//屏幕宽: 750rpx
-//第一块的位置x=285 y=110
-//每块的高度为80rpx 宽度为160rpx(含空部分)
-//每个代码块之前高度差为70rpx
-//规定 1->上 2->下 3->左 4->右
-var firstx = 285;
-var firsty = 110;
-var CodeWidth = 70;
-//pixelRatio1是用于px和rpx相互转化 px*pixelRatio1=rpx
-var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;
-//生成新的代码块的函数
-function Detail(id, x, y, type, name, bo) {
-  this.id = id;
-  this.x = x;
-  this.y = y;
-  this.type = type;
-  this.name = name;
-  this.bo = bo;
-  this.zIndex = 1;//用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
-}
+//***********************************************
+//以下变量用于操作任务区域内容
 
-function Info() {
-  this.details = [];
-}
-
-//queue为最后监测代码块编号的数组，第i个表示开始下方第i个为Codei
-//例：queue=[0,4,3,2,1]表示 上，右，左，下
-var queue = new Array();
-//当前点击代码块
-var clicknum;
-//获取初始点
-var startPoint;
-//ps
-
+var isShow = true; //代表顶部提示文案是否展示
 
 //这个地图的布局是一个8*4的地图，即宽度最多容纳8个方块，高度最多容纳4个方块，在给出地图的时候，使用坐标形式就行，地图会自动生成，且注意坐标点可以用小数形式表示
 //missionPathPass代表通行方块，missionPathBan代表不通行方块
@@ -62,16 +29,59 @@ var missionPathBan = [
   [6, 2.5]
 ];
 
-
 var man = [2, 1.5]; //这个坐标代表鞭炮的初始位置
 var goal = [6, 1.5]; //这个坐标代表目标的位置
 
 
+//***********************************************
+//以下变量用于代码编辑区域内容
+
+//ps
+//!!!!需要点击左边的按钮才能生成一个新的代码块
+//增加了背景颜色便于区分，如果要去掉，请转到css文件的MoveCode，把background-color注释掉
+//屏幕宽: 750rpx
+//第一块的位置x=285 y=110
+//每块的高度为80rpx 宽度为160rpx(含空部分)
+//每个代码块之前高度差为70rpx
+//规定 1->上 2->下 3->左 4->右
+var firstx = 285;
+var firsty = 110;
+var CodeWidth = 70;
+//pixelRatio1是用于px和rpx相互转化 px*pixelRatio1=rpx
+var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;
+//生成新的代码块的函数
+function Detail(id, x, y, type, name, bo) {
+  this.id = id;
+  this.x = x;
+  this.y = y;
+  this.type = type;
+  this.name = name;
+  this.bo = bo;
+  this.zIndex = 1; //用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
+}
+
+function Info() {
+  this.details = [];
+}
+//queue为最后监测代码块编号的数组，第i个表示开始下方第i个为Codei
+//例：queue=[0,4,3,2,1]表示 上，右，左，下
+var queue = new Array();
+//当前点击代码块
+var clicknum;
+//获取初始点
+var startPoint;
+//ps
+
+var disgardRegion = 120; //代表代码块横坐标小于这个数值时摧毁代码块
+var leftRegion = 210; //代表代码块横坐标小于这个数值时进入代码存储区
+var codeStartTouchRegionIsRight = false; //代表当前所操作代码块在点击前的位置是在代码存储区还是在代码编辑区，用于判断是否要根据该代码的位置来调节垃圾桶是否显示，true代表从编辑区开始点击，false代表从存储区开始点击
+
 Page({
   data: {
-    codeRegionHeight: 0,//记录代码操作区高度
-    binBackgroundState: "none",//用于表示垃圾桶区域是否显示，none为不显示，flex为显示
-    binState: "close",//用于记录垃圾桶图标中垃圾桶是否打开
+    codeRegionHeight: 0, //记录代码操作区高度
+    binBackgroundState: "none", //用于表示垃圾桶区域是否显示，none为不显示，flex为显示
+    binBackgroundRbga: 0, //用于表示垃圾桶Rgba中的透明度，用于是否显现垃圾桶区域，0为透明，1为不透明
+    binState: "close", //用于记录垃圾桶图标中垃圾桶是否打开
 
     info: {}, //存储可移动代码块
     topTipWidth: "0%", //代表TopTip模块的宽度，用于控制顶部提示文案是否展示
@@ -117,7 +127,9 @@ Page({
         scrHeight = res.windowHeight;
       }
     })
-    this.setData({ codeRegionHeight: scrHeight - 208 })
+    this.setData({
+      codeRegionHeight: scrHeight - leftRegion
+    })
 
     //初始化顶部提示文案是否展示
     if (isShow) {
@@ -253,26 +265,43 @@ Page({
 
   //*************************************
   //以下代码为代码操作区域相关代码
-  //reset按键的翻转函数，参数为0，进行复原，参数为1，进行180翻转
+  //reset按键的翻转函数，参数为0，进行180翻转，参数为1，进行复原
   resetChange: function (op) {
-    if (op == 0) this.setData({
-      resetRotate: 0
-    });
-    else if (op == 1) this.setData({
-      resetRotate: 180
-    });
+    if (op == 0) {
+      for (let i = 0; i < 180; i += 2) {
+        this.setData({
+          resetRotate: i
+        });
+        //console.log(i);
+      }
+    } else if (op == 1) {
+      for (let i = 180; i >= 0; i -= 2) {
+        this.setData({
+          resetRotate: i
+        });
+        //console.log(i);
+      }
+    }
   },
   //reset按键的点击函数
   reset: function () {
     //reset功能还没写，以下是按键翻转效果
-    this.resetChange(1);
     this.init();
+    this.resetChange(0);
     var that = this;
-    setTimeout(function () {
-      that.resetChange(0);
-    }, 100) //延迟时间 这里是1秒
+    that.resetChange(1);
+    // setTimeout(function () {
+    //   that.resetChange(1);
+    // }, 100) //延迟时间 这里是1秒
   },
-
+  //隐藏垃圾桶区域
+  hideBin: function () {
+    this.setData({
+      binBackgroundState: "none",
+      binBackgroundRbga: 0,
+      binState: "close"
+    })
+  },
 
   //ps
 
@@ -369,9 +398,16 @@ Page({
         clicknum = i;
     }
 
+    //获取当前操作代码块的横坐标，用于设置codeStartTouch
+    let x = this.data.info.details[clicknum].x;
+    if (x >= leftRegion) codeStartTouchRegionIsRight = true;
+    else codeStartTouchRegionIsRight = false;
+
     //更新堆叠顺序，设为99
     var newZIndex = 'info.details[' + clicknum + '].zIndex';
-    this.setData({ [newZIndex]: 99 });
+    this.setData({
+      [newZIndex]: 99
+    });
     this.CopyEvent(e);
   },
 
@@ -396,23 +432,53 @@ Page({
       [newx]: x,
       [newy]: y,
     })
-    //console.log("x=" + x + " y=" + y);
+    console.log("x=" + x + " y=" + y);
+
+    //代码是从编辑区开始点击，则需要考虑垃圾桶是否要显示
+    if (codeStartTouchRegionIsRight) {
+      //横坐标小于disgardRegion，直接将整个垃圾桶区域显现
+      if (x < disgardRegion) {
+        this.setData({
+          binBackgroundState: "flex",
+          binState: "open",
+          binBackgroundRbga: 1,
+        })
+      }
+      //横坐标大于disgardRegion小于leftRegion，渐渐显示出垃圾桶
+      else if (x < leftRegion) {
+        this.setData({
+          binBackgroundState: "flex",
+          binState: "close",
+          binBackgroundRbga: (leftRegion - x) / (leftRegion - disgardRegion)
+        })
+      }
+    }
   },
 
   //松开鼠标后判定吸附函数，同时用于判断新拿出的代码块是否完全移出了左边区域
   buttonEnd: function (e) {
+    //不论是否显现出了垃圾桶，先将垃圾桶区域隐藏 
+    this.hideBin();
+
     let info = this.data.info;
     var newx = 'info.details[' + clicknum + '].x';
     var newy = 'info.details[' + clicknum + '].y';
     var x = info.details[clicknum].x;
     var y = info.details[clicknum].y;
 
-    //判断新拿出的代码块是否完全移出了左边区域，如果不是，移除这个代码块
-    if (x <= 208) {
-      //x坐标小于208，意味着代码块并未完全移出左边区域
+    //判断操作结束后代码块是否触碰了左边区域，注意这里跟开始点击代码块时是在左右区域无关
+    //如果触碰到了左边区域：1、横坐标小于disgardRegion，进行清除；2、横坐标大于disgardRegion小于leftRegion，将代码块弹出左边区域
+    if (x < disgardRegion) {
+      //x坐标小于disgardRegion，意味着代码块进行清除
       //待实现
+      return; //清除后不应接着进行下面的磁吸判断，因此结束函数
+    } else if (x < leftRegion) {
+      //将代码块弹出左边区域
+      this.setData({
+        [newx]: 220
+      })
     }
-
+    //以下代码用于判断是否要进行磁吸
     var magnet = 0;
     //console.log(info.details);
     // console.log(clicknum);
@@ -473,7 +539,9 @@ Page({
 
     //更新堆叠顺序，设为1
     var newZIndex = 'info.details[' + clicknum + '].zIndex';
-    this.setData({ [newZIndex]: 1 });
+    this.setData({
+      [newZIndex]: 1
+    });
   },
 
   //点击开始运行后获取操作序列
@@ -496,11 +564,13 @@ Page({
   //用于设置垃圾桶区域是否显示，参数为1时设为显示，为0时设为不显示
   ChangeBinBackgroundState: function (state) {
     if (state == 1) {
-      this.setData({ binBackgroundState: "flex" })
-    }
-    else {
-      this.setData({ binBackgroundState: "none" })
+      this.setData({
+        binBackgroundState: "flex"
+      })
+    } else {
+      this.setData({
+        binBackgroundState: "none"
+      })
     }
   },
 })
-

@@ -32,7 +32,7 @@
       <image class="DirectionPoint" src="../../UI/icon{{item.type}}.png"></image>
       <text class="TextDirection">向{{item.name}}</text>
     </movable-view>
-    <view class="BinBackground" style="height:{{codeRegionHeight}}px;display:{{binBackgroundState}}">
+    <view class="BinBackground" style="height:{{codeRegionHeight}}px;display:{{binBackgroundState}};opacity:{{binBackgroundRbga}};">
       <view class="BinRegion" style="margin-top:{{codeRegionHeight}}-20vw-20">
         <image class="BinLogo" src="../../UI/bin_{{binState}}.png" alt=""></image>
       </view>

@@ -149,7 +149,7 @@ Page {
   font-size: 35rpx;
 }
 
-.BinBackground{
+.BinBackground {
   width: 100%;
   background-color: #FF8AC4;
   border-width: 0;
@@ -157,7 +157,7 @@ Page {
 }
 
 .BinRegion {
-  margin:10vw auto;
+  margin: 10vw auto;
   height: 20vw;
   width: 20vw;
   z-index: 3;
