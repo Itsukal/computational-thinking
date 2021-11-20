@@ -1,7 +1,8 @@
-Page{
+Page {
   background-color: white;
 }
-.TopRegion{
+
+.TopRegion {
   position: absolute;
   height: 40rpx;
   width: 100%;
@@ -10,7 +11,8 @@ Page{
   padding-bottom: 0;
   z-index: 2;
 }
-.TopQue{
+
+.TopQue {
   height: 40rpx;
   width: 40rpx;
   margin: 5rpx;
@@ -20,7 +22,8 @@ Page{
   border-radius: 20rpx;
   float: left;
 }
-.TopTip{
+
+.TopTip {
   background-color: #FF8AC4;
   color: white;
   line-height: 50rpx;
@@ -32,26 +35,30 @@ Page{
   float: left;
   font-size: 24rpx;
 }
-.TopClose{
+
+.TopClose {
   height: 40rpx;
   width: 40rpx;
   float: right;
   margin-top: 5rpx;
   margin-right: 7rpx;
 }
-.MissionRegion{
+
+.MissionRegion {
   background-color: #4ACCDA;
   height: 360rpx;
   line-height: 200rpx;
   width: 100%;
   margin: 30rpx auto;
 }
-.MissionPath{
+
+.MissionPath {
   width: 80rpx;
   height: 80rpx;
   position: absolute;
 }
-.CodeRegionTop{
+
+.CodeRegionTop {
   height: 70rpx;
   width: 100%;
   background-color: #FFEE68;
@@ -62,14 +69,16 @@ Page{
   color: #DF7220;
   line-height: 70rpx;
 }
-.CodeRegionTopPencil{
+
+.CodeRegionTopPencil {
   height: 50rpx;
   width: 50rpx;
   margin: 10rpx 20rpx;
   display: inline-block;
   float: left;
 }
-.CodeRegionTopReset{
+
+.CodeRegionTopReset {
   height: 50rpx;
   width: 50rpx;
   margin: 10rpx 20rpx;
@@ -80,70 +89,70 @@ Page{
 
 
 /* 以下是ps代码区 */
-.ps{
+.ps {
   display: flex;
   flex-flow: row;
-  height:1000px;
-  width: 750rpx; 
+  height: 1000px;
+  width: 750rpx;
 }
 
 
-.CodeStorage{
+.CodeStorage {
   height: 1000px;
   width: 28%;
-  background-color:  #FF8AC4;
+  background-color: #FF8AC4;
   border-width: 0;
   display: flex;
   flex-flow: column;
 }
 
-.CodeEditor{
+.CodeEditor {
   height: 1000px;
   width: 72%;
   /* background-color:; */
   border-width: 0;
 }
 
-.Codebox{
+.Codebox {
   display: flex;
   flex-flow: column;
 }
 
-.Code{
+.Code {
   height: 80rpx;
   width: 160rpx;
   margin: 40rpx 27rpx 0rpx 27rpx;
   /* 上右下左 */
   display: inline-block;
-  background-color:yellowgreen;
+  background-color: yellowgreen;
   /* float: right; */
 }
 
-.CodeImage{
-  width:100%;
-  height:100%;
+.CodeImage {
+  width: 100%;
+  height: 100%;
 }
 
-.DirectionPoint{
+.DirectionPoint {
   position: relative;
-  top:-80rpx;
-  left:15rpx;
-  width:50rpx;
-  height:60rpx;
+  top: -80rpx;
+  left: 15rpx;
+  width: 50rpx;
+  height: 60rpx;
 }
 
-.TextDirection{
+.TextDirection {
   color: white;
   line-height: 20px;
   display: inline-block;
   text-align: center;
   position: relative;
-  top:-100rpx;
-  left:15rpx;
+  top: -100rpx;
+  left: 15rpx;
   font-size: 35rpx;
 }
 
-.StartCode{
+.StartCode {
   height: 80rpx;
   width: 180rpx;
   margin: 40rpx 27rpx 0rpx 80rpx;
@@ -154,47 +163,47 @@ Page{
   /* float: right; */
 }
 
-.StartCircle{
+.StartCircle {
   position: relative;
-  top:-80rpx;
-  left:15rpx;
-  width:53rpx;
-  height:53rpx;
+  top: -80rpx;
+  left: 15rpx;
+  width: 53rpx;
+  height: 53rpx;
 }
 
-.TextStartUp{
+.TextStartUp {
   color: white;
   line-height: 20px;
   display: inline-block;
   text-align: center;
   position: relative;
-  top:-95rpx;
-  left:25rpx;
+  top: -95rpx;
+  left: 25rpx;
   font-size: 35rpx;
 }
 
 
-.StartBut{
-  position:fixed; 
-  bottom:50rpx;
-  right:70rpx;
+.StartBut {
+  position: fixed;
+  bottom: 50rpx;
+  right: 70rpx;
   margin: 0;
   width: 180rpx;
-  height:80rpx;
+  height: 80rpx;
 }
 
-.TextStartDown{
+.TextStartDown {
   color: #DF7220;
   line-height: 20px;
   display: inline-block;
   text-align: center;
   position: relative;
-  top:-95rpx;
-  left:25rpx;
+  top: -95rpx;
+  left: 25rpx;
   font-size: 35rpx;
 }
 
-.MoveCode{
+.MoveCode {
   height: 80rpx;
   width: 160rpx;
   margin: 0rpx 0rpx 0rpx 0rpx;
@@ -202,4 +211,5 @@ Page{
   display: inline-block;
   /* background-color:yellowgreen; */
   /* float: right; */
+  z-index: 2;
 }
