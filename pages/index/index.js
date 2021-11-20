@@ -101,15 +101,13 @@ Page({
     }, //代表目标位置，用于设立样式
   },
 
+  //初始化操作区界面
   init: function () {
     let that = this;
     this.setData({
       info: new Info(),
     });
-  },
-  // 事件处理函数
-  onLoad() {
-    this.init();
+
     let info = this.data.info;
     for (var i = 0; i < 4; i++) {
       var name;
@@ -138,7 +136,12 @@ Page({
     this.setData({
       info: info
     });
-    console.log(info);
+    //console.log(info);
+  },
+  // 事件处理函数
+  onLoad() {
+    //初始化代码区
+    this.init();
 
     //初始化地图，每个路径方块的长宽都是80rpx，所以坐标要乘以80
     //先铺设通行的方块
@@ -261,6 +264,7 @@ Page({
   reset: function () {
     //reset功能还没写，以下是按键翻转效果
     this.resetChange(1);
+    this.init();
     var that = this;
     setTimeout(function () {
       that.resetChange(0);
@@ -273,9 +277,9 @@ Page({
   //ps
 
 
-  //复制函数(点击复制，还不能做到拖动复制)
+  //复制函数，且复制的是操作区左边供选择的代码块
   CopyEvent: function (e) {
-    console.log(e);
+    //console.log(e);
     let info = this.data.info;
     var newid = e.currentTarget.id;
     // console.log(type);
@@ -285,10 +289,10 @@ Page({
         num = i;
     if (info.details[num].bo == 0) return;
     info.details[num].bo = 0;
-    console.log(num);
+    //console.log(num);
     num = info.details[num].type;
     var len = info.details.length;
-    console.log(len);
+    //console.log(len);
     var name;
     var y;
     switch (num) {
@@ -313,11 +317,11 @@ Page({
     this.setData({
       info: info
     });
-    console.log(this.data.info);
+    //console.log(this.data.info);
   },
 
 
-  //点击代码块的监听函数
+  //点击代码块的监听函数，目的是获取当前点击块(clicknum)
   buttonStart: function (e) {
     startPoint = e.touches[0]; //获取拖动
     //console.log(e);
@@ -353,17 +357,25 @@ Page({
       [newx]: x,
       [newy]: y,
     })
+    //console.log("x=" + x + " y=" + y);
   },
 
-  //松开鼠标后判定吸附函数
+  //松开鼠标后判定吸附函数，同时用于判断新拿出的代码块是否完全移出了左边区域
   buttonEnd: function (e) {
     let info = this.data.info;
     var newx = 'info.details[' + clicknum + '].x';
     var newy = 'info.details[' + clicknum + '].y';
     var x = info.details[clicknum].x;
     var y = info.details[clicknum].y;
+
+    //判断新拿出的代码块是否完全移出了左边区域，如果不是，移除这个代码块
+    if (x <= 208) {
+      //x坐标小于208，意味着代码块并未完全移出左边区域
+      //待实现
+    }
+
     var magnet = 0;
-    console.log(info.details);
+    //console.log(info.details);
     // console.log(clicknum);
     // console.log(info.details.length);
     for (var i = 0; i < info.details.length; i++) {
@@ -419,9 +431,10 @@ Page({
         }
       }
     }
+
   },
 
-
+  //点击开始运行后获取操作序列
   start: function () {
     var info = this.data.info;
     for (var i = 0; i < info.details.length; i++)
