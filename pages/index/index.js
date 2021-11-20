@@ -22,6 +22,7 @@ function Detail(id, x, y, type, name, bo) {
   this.type = type;
   this.name = name;
   this.bo = bo;
+  this.zIndex = 1;//用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
 }
 
 function Info() {
@@ -368,6 +369,9 @@ Page({
         clicknum = i;
     }
 
+    //更新堆叠顺序，设为99
+    var newZIndex = 'info.details[' + clicknum + '].zIndex';
+    this.setData({ [newZIndex]: 99 });
     this.CopyEvent(e);
   },
 
@@ -467,6 +471,9 @@ Page({
       }
     }
 
+    //更新堆叠顺序，设为1
+    var newZIndex = 'info.details[' + clicknum + '].zIndex';
+    this.setData({ [newZIndex]: 1 });
   },
 
   //点击开始运行后获取操作序列
