@@ -557,6 +557,7 @@ Page({
           queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
       }
     }
+    this.turnRight();
     console.log(queue);
   },
 
