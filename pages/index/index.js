@@ -573,6 +573,18 @@ Page({
           queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
       }
     }
+    var b=1;
+    for (var i=0;i<info.details.length;i++)
+    {
+      if (b==0)
+      {
+        queue[i]=0;
+      }
+      if (queue[i]==0)
+      {
+        b=0;
+      }
+    }
     console.log(queue);
   },
 
