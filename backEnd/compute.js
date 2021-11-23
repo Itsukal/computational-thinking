@@ -1,23 +1,29 @@
  //词法分析输出token
- const LexicalAnalysis=function (e) {
-  console.log(e);
-  let expression = e; //获取表达式
+ const LexicalAnalysis=function (tempExpression,tempX,tempY) {
+  console.log(tempExpression);
+  let expression = tempExpression; //获取表达式
   const symbol = ['+', '-'];
   const re = /\d/; //0-9的数字
   const tokens = []; //token序列
   const chars = expression.trim().split(''); //拆分表达式
   console.log(chars);
   let token = '';
+
+  //获取x，y坐标
+  let x=tempX;
+  let y=tempY;
+
+
   //拆解表达式,化成token数组
   chars.forEach(element => {
     console.log("element:" + element);
-    if (element == "a") //如果当前是x改变
+    if (element == "x") //如果当前是x改变
     {
-      element = this.data.a;
+      element = x;
     }
-    if (element == "b") //如果当前是y改变
+    if (element == "y") //如果当前是y改变
     {
-      element = this.data.b;
+      element = y;
     }
     if (re.test(element)) {
       token += element;
@@ -164,49 +170,18 @@ const CpuEmulator=function (instructions) {
   this.execute();
 }
 
-const XClickAdd=function (event) {
-  console.log("XClickAdd函数响应");
-  console.log("event内容:");
-  console.log(event);
-  let expression = event.currentTarget.dataset.expression;
-  console.log("expression:" + expression);
-  expression = "a" + expression + ",";
-  console.log(expression);
-
-  this.data.expression += expression;
-  console.log(this.data.expression);
-}
-
-const YClickAdd=function (event) {
-  console.log("YclickAdd函数响应");
-  console.log("event内容:");
-  console.log(event);
-  let expression = event.currentTarget.dataset.expression;
-  console.log("expression:" + expression);
-  expression = "b" + expression + ",";
-  console.log(expression);
-
-  this.data.expression += expression;
-  console.log(this.data.expression);
-}
-
-const XClickDelete=function (event) {
-  console.log("clickDelete函数响应");
-  console.log("event内容:");
-  console.log(event);
-}
-
-
 const test=function () {
-  testPosition.print();
   console.log("test函数收到响应");
-  let tempExpression = this.data.expression; //表达式库
+  let tempExpression = expression; //表达式库
+  let x=tempX;
+  let y=tempY;
+
   while (tempExpression.length > 3) {
     let expression = "";
     let flag = true; //判断为x改变还是y改变
     let i = 0;
     for (i = 0; i < tempExpression.length; i++) {
-      if (tempExpression[i] == "b")
+      if (tempExpression[i] == "x")
         flag = false; //y改变
       if (tempExpression[i] == ",") //遇到,截断
         break;
@@ -215,8 +190,6 @@ const test=function () {
     //删除表达式库中的字符
     tempExpression = tempExpression.slice(i + 1);
     console.log("expression" + expression);
-    console.log("this.data.expression:" + this.data.expression);
-
 
     const tokens = this.LexicalAnalysis(expression);
     const writer = new this.AssemblyWriter();
@@ -246,8 +219,4 @@ module.exports = {
   AssemblyWriter,
   Parser,
   CpuEmulator,
-  XClickAdd,
-  YClickAdd,
-  XClickDelete,
-  test
 }
