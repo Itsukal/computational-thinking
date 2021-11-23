@@ -1,6 +1,6 @@
 var scrHeight; //记录屏幕的高度，后续会用于计算代码区的高度
 var isShow = true; //代表顶部提示文案是否展示
-
+var totalCode=3;
 //***********************************************
 //以下变量用于操作任务区域内容
 
@@ -68,6 +68,7 @@ function Info() {
 var queue = new Array();
 //当前点击代码块
 var clicknum;
+var clickid;
 //获取初始点
 var startPoint;
 //ps
@@ -342,21 +343,29 @@ Page({
     //console.log(info);
   },
 
+
+  getclicknum:function(clickid){
+    let info=this.data.info;
+    for (var i=0;i<info.details.length;i++)
+    {
+      if (info.details[i].id==clickid)
+      return i;
+    }
+  },
+  
   //复制函数，且复制的是操作区左边供选择的代码块
   CopyEvent: function (e) {
     //console.log(e);
     let info = this.data.info;
     var newid = e.currentTarget.id;
     // console.log(type);
-    var num = 0;
-    for (var i = 0; i < info.details.length; i++)
-      if ("MoveCode" + i == newid)
-        num = i;
+    var num = clicknum;
     if (info.details[num].bo == 0) return;
     info.details[num].bo = 0;
     //console.log(num);
     num = info.details[num].type;
     var len = info.details.length;
+    totalCode = totalCode+1;
     //console.log(len);
     var name;
     var y;
@@ -378,7 +387,7 @@ Page({
         y = 40;
         break;
     }
-    info.details.push(new Detail(len, 27, y, num, name, 1));
+    info.details.push(new Detail(totalCode, 27, y, num, name, 1));
     this.setData({
       info: info
     });
@@ -391,12 +400,14 @@ Page({
     //console.log(e);
     var tmp = e.currentTarget.id;
 
-    for (var i = 0; i <= this.data.info.details.length; i++) {
+    for (var i = 0; i <= totalCode; i++) {
       var tmp_id = "MoveCode" + String(i)
       if (tmp_id == tmp)
-        clicknum = i;
+        clickid = i;
     }
-
+    clicknum = this.getclicknum(clickid);
+    console.log("clicknum:",clicknum);
+    console.log("clickid",clickid);
     //获取当前操作代码块的横坐标，用于设置codeStartTouch
     let x = this.data.info.details[clicknum].x;
     if (x >= leftRegion) codeStartTouchRegionIsRight = true;
@@ -467,11 +478,15 @@ Page({
 
     //判断操作结束后代码块是否触碰了左边区域，注意这里跟开始点击代码块时是在左右区域无关
     //如果触碰到了左边区域：1、横坐标小于disgardRegion，进行清除；2、横坐标大于disgardRegion小于leftRegion，将代码块弹出左边区域
+    console.log(clicknum)
+    console.log(info.details)
     if (x < disgardRegion) {
       //x坐标小于disgardRegion，意味着代码块进行清除
-
+      info.details.splice(clicknum,1); 
       //待实现
-
+      this.setData({
+        info: info
+      })
       return; //清除后不应接着进行下面的磁吸判断，因此结束函数
     } else if (x < leftRegion) {
       //将代码块弹出左边区域
@@ -479,6 +494,7 @@ Page({
         [newx]: 220
       })
     }
+
     //以下代码用于判断是否要进行磁吸
     var magnet = 0;
     //console.log(info.details);
@@ -557,7 +573,18 @@ Page({
           queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
       }
     }
-    this.turnRight();
+    var b=1;
+    for (var i=0;i<info.details.length;i++)
+    {
+      if (b==0)
+      {
+        queue[i]=0;
+      }
+      if (queue[i]==0)
+      {
+        b=0;
+      }
+    }
     console.log(queue);
   },
 
