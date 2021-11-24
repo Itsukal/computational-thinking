@@ -1,4 +1,5 @@
  //词法分析输出token
+ //
  const LexicalAnalysis=function (tempExpression,tempX,tempY) {
   console.log(tempExpression);
   let expression = tempExpression; //获取表达式
