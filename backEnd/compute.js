@@ -170,50 +170,6 @@ const CpuEmulator=function (instructions) {
   this.execute();
 }
 
-const test=function () {
-  console.log("test函数收到响应");
-  let tempExpression = expression; //表达式库
-  let x=tempX;
-  let y=tempY;
-
-  while (tempExpression.length > 3) {
-    let expression = "";
-    let flag = true; //判断为x改变还是y改变
-    let i = 0;
-    for (i = 0; i < tempExpression.length; i++) {
-      if (tempExpression[i] == "x")
-        flag = false; //y改变
-      if (tempExpression[i] == ",") //遇到,截断
-        break;
-      expression += tempExpression[i];
-    }
-    //删除表达式库中的字符
-    tempExpression = tempExpression.slice(i + 1);
-    console.log("expression" + expression);
-
-    const tokens = this.LexicalAnalysis(expression);
-    const writer = new this.AssemblyWriter();
-    console.log("tokens:" + tokens);
-    console.log("writer:" + writer);
-    const parser = new this.Parser(tokens, writer);
-    const instructions = parser.getInstructions();
-    console.log(instructions);
-    const emulator = new this.CpuEmulator(instructions);
-    //获取结果
-    let result = emulator.getResult();
-    if (flag == true) //为x的结果
-    {
-      this.data.a = result;
-      console.log("a:" + this.data.a);
-    }
-    if (flag == false) {
-      this.data.b = result;
-      console.log("b:" + this.data.b);
-    }
-  }
-  this.data.expression = tempExpression; //保持一致
-}
-
 module.exports = {
   LexicalAnalysis,
   AssemblyWriter,

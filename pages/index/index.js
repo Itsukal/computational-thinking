@@ -1,6 +1,10 @@
+//import
+let testPosition=require('../../backEnd/compute.js');
+
+
 var scrHeight; //记录屏幕的高度，后续会用于计算代码区的高度
 var isShow = true; //代表顶部提示文案是否展示
-var totalCode=3;
+var totalCode = 3;
 //***********************************************
 //以下变量用于操作任务区域内容
 
@@ -94,7 +98,10 @@ Page({
     //ps
     //数值初始化
     //x、y记录位置
-
+    x:0,
+    y:0,
+    expression:"",
+    //
     objectArray: [{
       id: 4,
       name: "右"
@@ -344,15 +351,14 @@ Page({
   },
 
 
-  getclicknum:function(clickid){
-    let info=this.data.info;
-    for (var i=0;i<info.details.length;i++)
-    {
-      if (info.details[i].id==clickid)
-      return i;
+  getclicknum: function (clickid) {
+    let info = this.data.info;
+    for (var i = 0; i < info.details.length; i++) {
+      if (info.details[i].id == clickid)
+        return i;
     }
   },
-  
+
   //复制函数，且复制的是操作区左边供选择的代码块
   CopyEvent: function (e) {
     //console.log(e);
@@ -365,7 +371,7 @@ Page({
     //console.log(num);
     num = info.details[num].type;
     var len = info.details.length;
-    totalCode = totalCode+1;
+    totalCode = totalCode + 1;
     //console.log(len);
     var name;
     var y;
@@ -406,8 +412,8 @@ Page({
         clickid = i;
     }
     clicknum = this.getclicknum(clickid);
-    console.log("clicknum:",clicknum);
-    console.log("clickid",clickid);
+    console.log("clicknum:", clicknum);
+    console.log("clickid", clickid);
     //获取当前操作代码块的横坐标，用于设置codeStartTouch
     let x = this.data.info.details[clicknum].x;
     if (x >= leftRegion) codeStartTouchRegionIsRight = true;
@@ -482,7 +488,7 @@ Page({
     console.log(info.details)
     if (x < disgardRegion) {
       //x坐标小于disgardRegion，意味着代码块进行清除
-      info.details.splice(clicknum,1); 
+      info.details.splice(clicknum, 1);
       //待实现
       this.setData({
         info: info
@@ -573,21 +579,168 @@ Page({
           queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
       }
     }
-    var b=1;
-    for (var i=0;i<info.details.length;i++)
-    {
-      if (b==0)
-      {
-        queue[i]=0;
+    var b = 1;
+    for (var i = 0; i < info.details.length; i++) {
+      if (b == 0) {
+        queue[i] = 0;
       }
-      if (queue[i]==0)
-      {
-        b=0;
+      if (queue[i] == 0) {
+        b = 0;
       }
     }
     console.log(queue);
+    this.queueToXYChange(queue);
   },
 
-  //ps
+  //queue序列里的操作，转成对应的x，y变化
+  //1->上 2->下 3->左 4->右
+  queueToXYChange:function(queue)
+  {
+    console.log(queue);
+    let queueLength=queue.length;
+    let queueValue=0;//获取queue当前下标中的值
+    for(let i=0;i<queueLength;i++)
+    {
+      queueValue=queue[i];
+      switch(queueValue)
+      {
+        case 1:
+          this.YClickAdd("+1");
+          break;
+        case 2:
+          this.YClickAdd("-1");
+          break;
+        case 3:
+          this.XClickAdd("-1");
+          break;
+        case 4:
+          this.XClickAdd("+1");
+          break;
+      }
+    }
+    console.log(this.data.expression);
+    //开始按照expression中的顺序做移动
+    this.totalMove();
+  },
+
+//与后端对接的接口
+XClickAdd: function (event) {
+  console.log("XClickAdd函数响应");
+  // console.log("event内容:");
+  // console.log(event);
+  let expression = event;
+  // console.log("expression:" + expression);
+  expression = "x" + expression + ",";
+  // console.log(expression);
+
+  this.data.expression += expression;
+  // console.log(this.data.expression);
+},
+
+YClickAdd: function (event) {
+  console.log("YclickAdd函数响应");
+  // console.log("event内容:");
+  // console.log(event);
+  let expression = event;
+  // console.log("expression:" + expression);
+  expression = "y" + expression + ",";
+  // console.log(expression);
+
+  this.data.expression += expression;
+  // console.log(this.data.expression);
+},
+
+
+getX:function()
+{
+return this.data.x;
+},
+
+getY:function()
+{
+return this.data.y;
+},
+
+setX:function(x)
+{
+this.data.x=x;
+},
+
+setY:function(y)
+{
+this.data.y=y;
+},
+
+getExpression:function()
+{
+  return this.data.expression;
+},
+
+  //按照expression的顺序做移动
+  totalMove: function () {
+    console.log("test函数收到响应");
+    let tempExpression = this.getExpression(); //表达式库
+    let x = this.getX();
+    let y = this.getY();
+
+    while (tempExpression.length > 3) {
+      let expression = "";
+      let flag = true; //判断为x改变还是y改变
+      let i = 0;
+      for (i = 0; i < tempExpression.length; i++) {
+        if (tempExpression[i] == "y")
+          flag = false; //y改变
+        if (tempExpression[i] == ",") //遇到,截断
+          break;
+        expression += tempExpression[i];
+      }
+      //删除表达式库中的字符
+      tempExpression = tempExpression.slice(i + 1);
+      console.log("expression" + expression);
+
+      const tokens = testPosition.LexicalAnalysis(expression, x, y);
+      const writer = new testPosition.AssemblyWriter();
+      console.log("tokens:" + tokens);
+      console.log("writer:" + writer);
+      const parser = new testPosition.Parser(tokens, writer);
+      const instructions = parser.getInstructions();
+      console.log(instructions);
+      const emulator = new testPosition.CpuEmulator(instructions);
+      //获取结果
+      let result = emulator.getResult();
+
+      if (flag == true) //为x的结果
+      {
+        let lastX=this.getX();
+        this.setX(result);
+        let gap=this.getX()-lastX;
+        console.log("gap:" + gap);
+        if(gap<0)
+        {
+          this.turnLeft();
+        }
+        if(gap>0)
+        {
+          this.turnRight();
+        }
+      }
+      if (flag == false)//为y的结果
+       {
+        let lastY=this.getY();
+        this.setY(result);
+        let gap=this.getY()-lastY;
+        console.log("gap:" + gap);
+        if(gap<0)
+        {
+          this.turnDown();
+        }
+        if(gap>0)
+        {
+          this.turnUp();
+        }
+      }
+    }
+    this.data.expression = tempExpression; //保持一致
+  },
 
 })
