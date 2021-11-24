@@ -54,14 +54,15 @@ var CodeWidth = 70;
 //pixelRatio1是用于px和rpx相互转化 px*pixelRatio1=rpx
 var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;
 //生成新的代码块的函数
-function Detail(id, x, y, type, name, bo) {
+function Detail(id, x, y, type, name, Copy) {
   this.id = id;
   this.x = x;
   this.y = y;
   this.type = type;
   this.name = name;
-  this.bo = bo;
-  this.zIndex = 1; //用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
+  this.Copy = Copy;
+  this.zIndex = 1;
+  this.Opacity = 1; //用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
 }
 
 function Info() {
@@ -448,7 +449,7 @@ Page({
       [newx]: x,
       [newy]: y,
     })
-    console.log("x=" + x + " y=" + y);
+    //console.log("x=" + x + " y=" + y);
 
     //代码是从编辑区开始点击，则需要考虑垃圾桶是否要显示
     if (codeStartTouchRegionIsRight) {
@@ -488,7 +489,9 @@ Page({
     console.log(info.details)
     if (x < disgardRegion) {
       //x坐标小于disgardRegion，意味着代码块进行清除
-      info.details.splice(clicknum, 1);
+      info.details[clicknum].Opacity=0;
+      info.details[clicknum].x=0;
+      info.details[clicknum].y=0;
       //待实现
       this.setData({
         info: info
