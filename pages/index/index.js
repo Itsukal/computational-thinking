@@ -1,5 +1,5 @@
 //import
-let testPosition=require('../../backEnd/compute.js');
+let testPosition = require('../../backEnd/compute.js');
 
 
 var scrHeight; //记录屏幕的高度，后续会用于计算代码区的高度
@@ -35,6 +35,9 @@ var missionPathBan = [
 
 var man = [2, 1.5]; //这个坐标代表鞭炮的初始位置
 var goal = [6, 1.5]; //这个坐标代表目标的位置
+
+//最开始man的位置
+let beginManPosition=[0,0];
 
 
 //***********************************************
@@ -84,6 +87,7 @@ var codeStartTouchRegionIsRight = false; //代表当前所操作代码块在点�
 
 Page({
   data: {
+    buttonIsOrUsed:false,//判断开始按钮是否有使用过
     codeRegionHeight: 0, //记录代码操作区高度
     binBackgroundState: "none", //用于表示垃圾桶区域是否显示，none为不显示，flex为显示
     binBackgroundRbga: 0, //用于表示垃圾桶Rgba中的透明度，用于是否显现垃圾桶区域，0为透明，1为不透明
@@ -99,9 +103,9 @@ Page({
     //ps
     //数值初始化
     //x、y记录位置
-    x:0,
-    y:0,
-    expression:"",
+    x: 0,
+    y: 0,
+    expression: "",
     //
     objectArray: [{
       id: 4,
@@ -251,7 +255,8 @@ Page({
       this.updateManPos();
       return true;
     } else {
-      man = tmp;
+      // man = tmp;
+      this.updateManPos();
       console.log("操作不合理！！！");
       return false;
     }
@@ -489,9 +494,9 @@ Page({
     console.log(info.details)
     if (x < disgardRegion) {
       //x坐标小于disgardRegion，意味着代码块进行清除
-      info.details[clicknum].Opacity=0;
-      info.details[clicknum].x=0;
-      info.details[clicknum].y=0;
+      info.details[clicknum].Opacity = 0;
+      info.details[clicknum].x = 0;
+      info.details[clicknum].y = 0;
       //待实现
       this.setData({
         info: info
@@ -572,41 +577,48 @@ Page({
 
   //点击开始运行后获取操作序列
   start: function () {
-    var info = this.data.info;
-    for (var i = 0; i < info.details.length; i++)
-      queue[i] = 0;
-
-    for (var i = 0; i < info.details.length; i++) {
-      if (info.details[i].x == firstx) {
-        if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx)
-          queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
-      }
-    }
-    var b = 1;
-    for (var i = 0; i < info.details.length; i++) {
-      if (b == 0) {
+    beginManPosition[0]=this.data.man[0];
+    beginManPosition[1]=this.data.man[1];
+    console.log("test");
+    console.log(this.data.man);
+    console.log(beginManPosition[1]);
+    if (this.data.buttonIsOrUsed == false) {
+      this.setData({
+        buttonIsOrUsed:true
+      });
+      var info = this.data.info;
+      for (var i = 0; i < info.details.length; i++)
         queue[i] = 0;
+
+      for (var i = 0; i < info.details.length; i++) {
+        if (info.details[i].x == firstx) {
+          if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx)
+            queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
+        }
       }
-      if (queue[i] == 0) {
-        b = 0;
+      var b = 1;
+      for (var i = 0; i < info.details.length; i++) {
+        if (b == 0) {
+          queue[i] = 0;
+        }
+        if (queue[i] == 0) {
+          b = 0;
+        }
       }
+      console.log(queue);
+      this.queueToXYChange(queue);
     }
-    console.log(queue);
-    this.queueToXYChange(queue);
   },
 
   //queue序列里的操作，转成对应的x，y变化
   //1->上 2->下 3->左 4->右
-  queueToXYChange:function(queue)
-  {
+  queueToXYChange: function (queue) {
     console.log(queue);
-    let queueLength=queue.length;
-    let queueValue=0;//获取queue当前下标中的值
-    for(let i=0;i<queueLength;i++)
-    {
-      queueValue=queue[i];
-      switch(queueValue)
-      {
+    let queueLength = queue.length;
+    let queueValue = 0; //获取queue当前下标中的值
+    for (let i = 0; i < queueLength; i++) {
+      queueValue = queue[i];
+      switch (queueValue) {
         case 1:
           this.YClickAdd("+1");
           break;
@@ -626,57 +638,75 @@ Page({
     this.totalMove();
   },
 
-//与后端对接的接口
-XClickAdd: function (event) {
-  console.log("XClickAdd函数响应");
-  // console.log("event内容:");
-  // console.log(event);
-  let expression = event;
-  // console.log("expression:" + expression);
-  expression = "x" + expression + ",";
-  // console.log(expression);
+  //与后端对接的接口
+  XClickAdd: function (event) {
+    console.log("XClickAdd函数响应");
+    // console.log("event内容:");
+    // console.log(event);
+    let expression = event;
+    // console.log("expression:" + expression);
+    expression = "x" + expression + ",";
+    // console.log(expression);
 
-  this.data.expression += expression;
-  // console.log(this.data.expression);
-},
+    this.data.expression += expression;
+    // console.log(this.data.expression);
+  },
 
-YClickAdd: function (event) {
-  console.log("YclickAdd函数响应");
-  // console.log("event内容:");
-  // console.log(event);
-  let expression = event;
-  // console.log("expression:" + expression);
-  expression = "y" + expression + ",";
-  // console.log(expression);
+  YClickAdd: function (event) {
+    console.log("YclickAdd函数响应");
+    // console.log("event内容:");
+    // console.log(event);
+    let expression = event;
+    // console.log("expression:" + expression);
+    expression = "y" + expression + ",";
+    // console.log(expression);
 
-  this.data.expression += expression;
-  // console.log(this.data.expression);
-},
+    this.data.expression += expression;
+    // console.log(this.data.expression);
+  },
 
 
-getX:function()
+  getX: function () {
+    return this.data.x;
+  },
+
+  getY: function () {
+    return this.data.y;
+  },
+
+  setX: function (x) {
+    this.data.x = x;
+  },
+
+  setY: function (y) {
+    this.data.y = y;
+  },
+
+  getExpression: function () {
+    return this.data.expression;
+  },
+
+buttonValueChange:function()
 {
-return this.data.x;
+  let value=this.data.buttonIsOrUsed;
+  this.setData({
+    buttonIsOrUsed:true
+  })
 },
 
-getY:function()
+//重置代码区和演示区
+resetClick:function()
 {
-return this.data.y;
-},
-
-setX:function(x)
-{
-this.data.x=x;
-},
-
-setY:function(y)
-{
-this.data.y=y;
-},
-
-getExpression:function()
-{
-  return this.data.expression;
+  man[0]=2;
+  man[1]=1.5;
+  this.updateManPos();
+  this.setData({
+    x:0,
+    y:0,
+    expression:"",
+    buttonIsOrUsed:false
+  });
+  this.reset();
 },
 
   //按照expression的顺序做移动
@@ -714,31 +744,27 @@ getExpression:function()
 
       if (flag == true) //为x的结果
       {
-        let lastX=this.getX();
+        let lastX = this.getX();
         this.setX(result);
-        let gap=this.getX()-lastX;
+        let gap = this.getX() - lastX;
         console.log("gap:" + gap);
-        if(gap<0)
-        {
+        if (gap < 0) {
           this.turnLeft();
         }
-        if(gap>0)
-        {
+        if (gap > 0) {
           this.turnRight();
         }
       }
-      if (flag == false)//为y的结果
-       {
-        let lastY=this.getY();
+      if (flag == false) //为y的结果
+      {
+        let lastY = this.getY();
         this.setY(result);
-        let gap=this.getY()-lastY;
+        let gap = this.getY() - lastY;
         console.log("gap:" + gap);
-        if(gap<0)
-        {
+        if (gap < 0) {
           this.turnDown();
         }
-        if(gap>0)
-        {
+        if (gap > 0) {
           this.turnUp();
         }
       }

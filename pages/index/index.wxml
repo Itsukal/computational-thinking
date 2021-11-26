@@ -61,8 +61,9 @@
   </view>
 </movable-area>
 <!-- 底部固定开始按钮 -->
-<view class="StartBut" bindtap="start">
+<view class="StartBut" wx:if="{{!buttonIsOrUsed}}" catchtap="start">
   <image class="CodeImage" src="../../UI/StartBlock.png"></image>
   <image class="StartCircle" src="../../UI/StartRun.png"></image>
   <text class="TextStartDown">开始</text>
 </view>
+<button class="StartBut" bindtap="resetClick" wx:else>重置</button>

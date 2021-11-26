@@ -171,6 +171,12 @@ const CpuEmulator=function (instructions) {
   this.execute();
 }
 
+// const init=function(object)
+// {
+//   console.log(object);
+//   object.restChange();
+// }
+
 module.exports = {
   LexicalAnalysis,
   AssemblyWriter,
