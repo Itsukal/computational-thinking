@@ -74,6 +74,7 @@ function Info() {
 //queue为最后监测代码块编号的数组，第i个表示开始下方第i个为Codei
 //例：queue=[0,4,3,2,1]表示 上，右，左，下
 var queue = new Array();
+var queuenum = new Array();
 //当前点击代码块
 var clicknum;
 var clickid;
@@ -427,8 +428,10 @@ Page({
 
     //更新堆叠顺序，设为99
     var newZIndex = 'info.details[' + clicknum + '].zIndex';
+    var newOpacity = 'info.details[' + clicknum + '].Opacity';
     this.setData({
-      [newZIndex]: 99
+      [newZIndex]: 99,
+      [newOpacity]:1
     });
     this.CopyEvent(e);
   },
@@ -573,27 +576,47 @@ Page({
     this.setData({
       [newZIndex]: 1
     });
+    this.getqueue();
+    this.setOpacity();
   },
 
-  //点击开始运行后获取操作序列
-  start: function () {
-    beginManPosition[0]=this.data.man[0];
-    beginManPosition[1]=this.data.man[1];
-    console.log("test");
-    console.log(this.data.man);
-    console.log(beginManPosition[1]);
-    if (this.data.buttonIsOrUsed == false) {
-      this.setData({
-        buttonIsOrUsed:true
-      });
-      var info = this.data.info;
-      for (var i = 0; i < info.details.length; i++)
+  setOpacity:function(){
+    let info=this.data.info;
+    for (var i = 0; i < info.details.length; i++)
+    { 
+      info.details[i].Opacity=0.5;
+      if (info.details[i].x<20)
+        info.details[i].Opacity=0;
+      else
+      if (info.details[i].x<200)
+        info.details[i].Opacity=1;
+    }
+    for (var i=0;i<queuenum.length;i++)
+    {
+      if (queuenum[i]==-1)
+        break;
+      info.details[queuenum[i]].Opacity=1;
+    }
+    this.setData({
+      info:info
+    });
+  },
+
+  getqueue: function(){
+    let info=this.data.info
+    for (var i = 0; i < info.details.length; i++)
+    {
         queue[i] = 0;
+        queuenum[i]=-1;
+    }
 
       for (var i = 0; i < info.details.length; i++) {
         if (info.details[i].x == firstx) {
           if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx)
+          {
             queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
+            queuenum[(info.details[i].y - firsty) / 70]=i; 
+          }
         }
       }
       var b = 1;
@@ -605,6 +628,21 @@ Page({
           b = 0;
         }
       }
+      console.log(queue);
+      console.log(queuenum);
+  },
+  //点击开始运行后获取操作序列
+  start: function () {
+    beginManPosition[0]=this.data.man[0];
+    beginManPosition[1]=this.data.man[1];
+    console.log("test");
+    console.log(this.data.man);
+    console.log(beginManPosition[1]);
+    if (this.data.buttonIsOrUsed == false) {
+      this.setData({
+        buttonIsOrUsed:true
+      });
+      this.getqueue();
       console.log(queue);
       this.queueToXYChange(queue);
     }
