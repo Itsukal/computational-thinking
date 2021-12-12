@@ -28,7 +28,7 @@
       <text class="TextDirection"> 向{{item.name}}</text>
     </view> -->
     <movable-view class="MoveCode" direction="all" wx:for="{{info.details}}" wx:key="key" id="MoveCode{{item.id}}" x="{{item.x}}rpx" y="{{item.y}}rpx" style="z-index:{{item.zIndex}} opacity:{{item.Opacity}}" bindtouchstart="buttonStart" catchtouchmove="buttonMove" bindtouchend="buttonEnd">
-      <image class="CodeImage" src="../../UI/Code2.png" style="opacity:{{item.Opacity}}"></image>
+      <image class="CodeImage" src="../../UI/MoveCode{{item.highlight}}.png" style="opacity:{{item.Opacity}}"></image>
       <image class="DirectionPoint" src="../../UI/icon{{item.type}}.png" style="opacity:{{item.Opacity}}"></image>
       <text class="TextDirection" style="opacity:{{item.Opacity}}">向{{item.name}}</text>
     </movable-view>

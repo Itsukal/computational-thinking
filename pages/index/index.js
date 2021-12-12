@@ -65,6 +65,7 @@ function Detail(id, x, y, type, name, Copy) {
   this.name = name;
   this.Copy = Copy;
   this.zIndex = 1;
+  this.highlight=0;
   this.Opacity = 1; //用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
 }
 
@@ -409,6 +410,16 @@ Page({
 
   //点击代码块的监听函数，目的是获取当前点击块(clicknum)
   buttonStart: function (e) {
+
+    //去除高亮
+    if (typeof(clicknum)!='undefined')
+    {
+      var newhighlight = 'info.details[' + clicknum + '].highlight';
+      this.setData({
+        [newhighlight]:0,
+      });
+    }
+
     startPoint = e.touches[0]; //获取拖动
     //console.log(e);
     var tmp = e.currentTarget.id;
@@ -429,9 +440,11 @@ Page({
     //更新堆叠顺序，设为99
     var newZIndex = 'info.details[' + clicknum + '].zIndex';
     var newOpacity = 'info.details[' + clicknum + '].Opacity';
+    var newhighlight = 'info.details[' + clicknum + '].highlight';
     this.setData({
       [newZIndex]: 99,
-      [newOpacity]:1
+      [newOpacity]:1,
+      [newhighlight]:1,
     });
     this.CopyEvent(e);
   },
@@ -528,7 +541,7 @@ Page({
 
           var isdown = 0;
           for (var j = 0; j < info.details.length; j++) {
-            if (info.details[i].x == info.details[j].x && info.details[i].y == info.details[j].y - CodeWidth)
+            if (info.details[i].x == info.details[j].x && info.details[i].y == info.details[j].y - CodeWidth && j!=clicknum)
               isdown = 1;
           }
           console.log(isdown, "isdown");
