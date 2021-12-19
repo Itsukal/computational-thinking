@@ -16,6 +16,7 @@ var isShow = true; //代表顶部提示文案是否展示
 var missionPathPass = [
   [2, 1.5],
   [3, 1.5],
+  [4, 1.5],
   [3, 2.5],
   [3, 0.5],
   [4, 0.5],
@@ -26,7 +27,6 @@ var missionPathPass = [
 var missionPathBan = [
   [2, 0.5],
   [2, 2.5],
-  [4, 1.5],
   [4, 2.5],
   [5, 2.5],
   [6, 0.5],
@@ -37,7 +37,7 @@ var man = [2, 1.5]; //这个坐标代表鞭炮的初始位置
 var goal = [6, 1.5]; //这个坐标代表目标的位置
 
 //最开始man的位置
-let beginManPosition=[0,0];
+let beginManPosition = [0, 0];
 
 
 //***********************************************
@@ -65,7 +65,7 @@ function Detail(id, x, y, type, name, Copy) {
   this.name = name;
   this.Copy = Copy;
   this.zIndex = 1;
-  this.highlight=0;
+  this.highlight = 0;
   this.Opacity = 1; //用于记录代码块的堆叠顺序，当当前代码块正在被操作时，应该被堆叠在最高层，此时zIndex会被设置为99；相反，如果不被操作，zIndex会被设置为1
 }
 
@@ -89,7 +89,7 @@ var codeStartTouchRegionIsRight = false; //代表当前所操作代码块在点�
 
 Page({
   data: {
-    buttonIsOrUsed:false,//判断开始按钮是否有使用过
+    buttonIsOrUsed: false, //判断开始按钮是否有使用过
     codeRegionHeight: 0, //记录代码操作区高度
     binBackgroundState: "none", //用于表示垃圾桶区域是否显示，none为不显示，flex为显示
     binBackgroundRbga: 0, //用于表示垃圾桶Rgba中的透明度，用于是否显现垃圾桶区域，0为透明，1为不透明
@@ -412,11 +412,10 @@ Page({
   buttonStart: function (e) {
 
     //去除高亮
-    if (typeof(clicknum)!='undefined')
-    {
+    if (typeof (clicknum) != 'undefined') {
       var newhighlight = 'info.details[' + clicknum + '].highlight';
       this.setData({
-        [newhighlight]:0,
+        [newhighlight]: 0,
       });
     }
 
@@ -443,8 +442,8 @@ Page({
     var newhighlight = 'info.details[' + clicknum + '].highlight';
     this.setData({
       [newZIndex]: 99,
-      [newOpacity]:1,
-      [newhighlight]:1,
+      [newOpacity]: 1,
+      [newhighlight]: 1,
     });
     this.CopyEvent(e);
   },
@@ -541,7 +540,7 @@ Page({
 
           var isdown = 0;
           for (var j = 0; j < info.details.length; j++) {
-            if (info.details[i].x == info.details[j].x && info.details[i].y == info.details[j].y - CodeWidth && j!=clicknum)
+            if (info.details[i].x == info.details[j].x && info.details[i].y == info.details[j].y - CodeWidth && j != clicknum)
               isdown = 1;
           }
           console.log(isdown, "isdown");
@@ -593,67 +592,63 @@ Page({
     this.setOpacity();
   },
 
-  setOpacity:function(){
-    let info=this.data.info;
-    for (var i = 0; i < info.details.length; i++)
-    { 
-      info.details[i].Opacity=0.5;
-      if (info.details[i].x<20)
-        info.details[i].Opacity=0;
+  setOpacity: function () {
+    let info = this.data.info;
+    for (var i = 0; i < info.details.length; i++) {
+      info.details[i].Opacity = 0.5;
+      if (info.details[i].x < 20)
+        info.details[i].Opacity = 0;
       else
-      if (info.details[i].x<200)
-        info.details[i].Opacity=1;
+      if (info.details[i].x < 200)
+        info.details[i].Opacity = 1;
     }
-    for (var i=0;i<queuenum.length;i++)
-    {
-      if (queuenum[i]==-1)
+    for (var i = 0; i < queuenum.length; i++) {
+      if (queuenum[i] == -1)
         break;
-      info.details[queuenum[i]].Opacity=1;
+      info.details[queuenum[i]].Opacity = 1;
     }
     this.setData({
-      info:info
+      info: info
     });
   },
 
-  getqueue: function(){
-    let info=this.data.info
-    for (var i = 0; i < info.details.length; i++)
-    {
-        queue[i] = 0;
-        queuenum[i]=-1;
+  getqueue: function () {
+    let info = this.data.info
+    for (var i = 0; i < info.details.length; i++) {
+      queue[i] = 0;
+      queuenum[i] = -1;
     }
 
-      for (var i = 0; i < info.details.length; i++) {
-        if (info.details[i].x == firstx) {
-          if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx)
-          {
-            queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
-            queuenum[(info.details[i].y - firsty) / 70]=i; 
-          }
+    for (var i = 0; i < info.details.length; i++) {
+      if (info.details[i].x == firstx) {
+        if ((info.details[i].y - firsty) % 70 == 0 && info.details[i].x == firstx) {
+          queue[(info.details[i].y - firsty) / 70] = info.details[i].type;
+          queuenum[(info.details[i].y - firsty) / 70] = i;
         }
       }
-      var b = 1;
-      for (var i = 0; i < info.details.length; i++) {
-        if (b == 0) {
-          queue[i] = 0;
-        }
-        if (queue[i] == 0) {
-          b = 0;
-        }
+    }
+    var b = 1;
+    for (var i = 0; i < info.details.length; i++) {
+      if (b == 0) {
+        queue[i] = 0;
       }
-      console.log(queue);
-      console.log(queuenum);
+      if (queue[i] == 0) {
+        b = 0;
+      }
+    }
+    console.log(queue);
+    console.log(queuenum);
   },
   //点击开始运行后获取操作序列
   start: function () {
-    beginManPosition[0]=this.data.man[0];
-    beginManPosition[1]=this.data.man[1];
+    beginManPosition[0] = this.data.man[0];
+    beginManPosition[1] = this.data.man[1];
     console.log("test");
     console.log(this.data.man);
     console.log(beginManPosition[1]);
     if (this.data.buttonIsOrUsed == false) {
       this.setData({
-        buttonIsOrUsed:true
+        buttonIsOrUsed: true
       });
       this.getqueue();
       console.log(queue);
@@ -737,35 +732,31 @@ Page({
     return this.data.expression;
   },
 
-buttonValueChange:function()
-{
-  let value=this.data.buttonIsOrUsed;
-  this.setData({
-    buttonIsOrUsed:true
-  })
-},
+  buttonValueChange: function () {
+    let value = this.data.buttonIsOrUsed;
+    this.setData({
+      buttonIsOrUsed: true
+    })
+  },
 
-//重置代码区和演示区
-resetClick:function()
-{
-  man[0]=2;
-  man[1]=1.5;
-  this.updateManPos();
-  this.setData({
-    x:0,
-    y:0,
-    expression:"",
-    buttonIsOrUsed:false
-  });
-  this.reset();
-},
+  //重置代码区和演示区
+  resetClick: function () {
+    man[0] = 2;
+    man[1] = 1.5;
+    this.updateManPos();
+    this.setData({
+      x: 0,
+      y: 0,
+      expression: "",
+      buttonIsOrUsed: false
+    });
+    this.reset();
+  },
 
   //按照expression的顺序做移动
   totalMove: function () {
     console.log("test函数收到响应");
     let tempExpression = this.getExpression(); //表达式库
-    let x = this.getX();
-    let y = this.getY();
 
     while (tempExpression.length > 3) {
       let expression = "";
@@ -782,6 +773,8 @@ resetClick:function()
       tempExpression = tempExpression.slice(i + 1);
       console.log("expression" + expression);
 
+      let x = this.getX();
+      let y = this.getY();
       const tokens = testPosition.LexicalAnalysis(expression, x, y);
       const writer = new testPosition.AssemblyWriter();
       console.log("tokens:" + tokens);
@@ -797,12 +790,15 @@ resetClick:function()
       {
         let lastX = this.getX();
         this.setX(result);
+        console.log("result:" + result);
         let gap = this.getX() - lastX;
         console.log("gap:" + gap);
         if (gap < 0) {
+          this.sleep(500);
           this.turnLeft();
         }
         if (gap > 0) {
+          this.sleep(500);
           this.turnRight();
         }
       }
@@ -813,14 +809,27 @@ resetClick:function()
         let gap = this.getY() - lastY;
         console.log("gap:" + gap);
         if (gap < 0) {
+          this.sleep(500);
           this.turnDown();
         }
         if (gap > 0) {
+          this.sleep(500);
           this.turnUp();
         }
       }
     }
     this.data.expression = tempExpression; //保持一致
   },
+
+  sleep: function (numberMillis) {
+    var now = new Date();
+    var exitTime = now.getTime() + numberMillis;
+    while (true) {
+      now = new Date();
+      if (now.getTime() > exitTime)
+        return;
+    }
+  }
+
 
 })
