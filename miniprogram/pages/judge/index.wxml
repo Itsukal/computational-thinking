@@ -1,166 +1,84 @@
-<view class="tit">
-  <text class="up">{{t}}</text>
+<view class="test"></view>
+
+<view class="block" style="height: {{title_height}}px;background-color: #C9F994;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,10rpx 5px 20rpx 0px #c8f9948f;">
+  <!-- <image class="sImg" src="1.png" mode="aspectFit" style="transform: rotate({{ba[1]}}deg)" bindtap="show1"></image> -->
+  <text class="Title" style="text-shadow: 5px 1px 6px #ffffff;">您的孩子已超过{{'\n'}}全国{{value}}%的未成年人</text>
+
+  <view class="weui2" >
+		<canvas class='oneCan' canvas-id='school' ></canvas>
+	</view>
+
+
 </view>
 
-<view class="my-chart">
-<!-- 发布时去掉该属性force-use-old-canvas=“true”，只用于真机调试显示 -->
-  <ec-canvas id="mychart-dom1" canvas-id="mychart1" ec="{{ec1}}" force-use-old-canvas="bo"></ec-canvas>
+
+<view class="block" style="height: {{chart_height}}px;background-color: #94F7F9;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,5rpx 3px 15rpx 0px #c8f9948f;">
+
+  <text class="chart_Title" style="text-shadow: 5px 1px 6px #ffffff;">相对于同龄人，您的孩子{{'\n'}}在算法，模式识别表现突出{{'\n'}}在分治上略显薄弱</text>
+  <view style='height:300px;width:100%;display: flex;justify-content: center;margin: 100'>  
+    <ec-canvas class="canva" canvas-id="mychart1" ec="{{ec1}}" force-use-old-canvas="bo"></ec-canvas>
+  </view>
+
 </view>
 
-<view class="fenzhi">
-  <text class='tit25'>分治能力</text>
-  <view class="leftright">
-    <view class="updown">
 
-    <view class="five">
-      <view style="background-color:rgb({{f1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
-      <view style="background-color:rgb({{f2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
-      <view style="background-color:rgb({{f3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
-      <view style="background-color:rgb({{f4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
-      <view style="background-color:rgb({{f5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
-    </view>
 
-    <view class="five">
-      <view style="background-color:rgb({{f6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
-      <view style="background-color:rgb({{f7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
-      <view style="background-color:rgb({{f8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
-      <view style="background-color:rgb({{f9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
-      <view style="background-color:rgb({{f10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
-    </view>
 
-    <view class="five">
-      <view style="background-color:rgb({{f11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
-      <view style="background-color:rgb({{f12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
-      <view style="background-color:rgb({{f13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
-      <view style="background-color:rgb({{f14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
-      <view style="background-color:rgb({{f15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
-    </view>
+
+
+
+<view class="block" style="height: {{bh[1]}}px;background-color: #C9F994;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,5rpx 3px 15rpx 0px #c8f9948f;">
+  <image class="sImg" src="1.png" mode="aspectFit" style="transform: rotate({{ba[1]}}deg)" bindtap="show1"></image>
+  <text class="blockTitle">分治能力</text>
+  <text class="blockSmallTitle">平均时间: {{divideTimeMinute}}分{{divideTimeSecond}}秒  正确率{{right0}}%</text>
+  <view class="queBox">
+    <view class="que" style="background-color:rgb({{color[1][1]}});border-width:{{border[1][1]}}rpx;">1</view>
     
   </view>
-    <text class='tit25r'>{{t1}}</text>
+  <view class="queBox">
+   
   </view>
 </view>
 
 
-<view class="fenzhi">
-  <text class='tit25'>抽象能力</text>
-  <view class="leftright">
-    <view class="updown">
-
-      <view class="five">
-      <view style="background-color:rgb({{c1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
-      <view style="background-color:rgb({{c2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
-      <view style="background-color:rgb({{c3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
-      <view style="background-color:rgb({{c4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
-      <view  style="background-color:rgb({{c5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{c6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
-      <view style="background-color:rgb({{c7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
-      <view style="background-color:rgb({{c8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
-      <view style="background-color:rgb({{c9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
-      <view style="background-color:rgb({{c10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{c11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
-      <view style="background-color:rgb({{c12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
-      <view style="background-color:rgb({{c13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
-      <view style="background-color:rgb({{c14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
-      <view style="background-color:rgb({{c15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
-    </view>
-    
+<view class="block" style="height: {{bh[2]}}px;background-color: #F0E250;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,5rpx 3px 15rpx 0px #f0e3508a;">
+  <image class="sImg" src="2.png" mode="aspectFit" style="transform: rotate({{ba[2]}}deg)" bindtap="show2"></image>
+  <text class="blockTitle">抽象能力</text>
+  <text class="blockSmallTitle">平均时间: {{abstractTimeMinute}}分{{abstractTimeSecond}}秒  正确率{{right1}}%</text>
+  <view class="queBox">
+    <view class="que" style="background-color:rgb({{color[2][1]}});border-width:{{border[2][1]}}rpx;">1</view>
+    <view class="que" style="background-color:rgb({{color[2][2]}});border-width:{{border[2][2]}}rpx;">2</view>
+    <view class="que" style="background-color:rgb({{color[2][3]}});border-width:{{border[2][3]}}rpx;">3</view>
+    <view class="que" style="background-color:rgb({{color[2][4]}});border-width:{{border[2][4]}}rpx;">4</view>
+    <view class="que" style="background-color:rgb({{color[2][5]}});border-width:{{border[2][5]}}rpx;">5</view>
   </view>
-    <text class='tit25r'>{{t1}}</text>
+  
+</view>
+
+
+<view class="block" style="height: {{bh[3]}}px;background-color: #94F9F2;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,5rpx 3px 15rpx 0px #94f9f280;">
+  <image class="sImg" src="3.png" mode="aspectFit" style="transform: rotate({{ba[3]}}deg)" bindtap="show3"></image>
+  <text class="blockTitle">模式识别能力</text>
+  <text class="blockSmallTitle">平均时间: {{patternTimeMinute}}分{{patternTimeSecond}}秒  正确率{{right2}}%</text>
+  <view class="queBox">
+    <view class="que" style="background-color:rgb({{color[3][1]}});border-width:{{border[3][1]}}rpx;">1</view>
+    <view class="que" style="background-color:rgb({{color[3][2]}});border-width:{{border[3][2]}}rpx;">2</view>
+    <view class="que" style="background-color:rgb({{color[3][3]}});border-width:{{border[3][3]}}rpx;">3</view>
+    <view class="que" style="background-color:rgb({{color[3][4]}});border-width:{{border[3][4]}}rpx;">4</view>
+    <view class="que" style="background-color:rgb({{color[3][5]}});border-width:{{border[3][5]}}rpx;">5</view>
   </view>
 </view>
 
 
-<view class="fenzhi">
-  <text class='tit25'>模式识别能力</text>
-  <view class="leftright">
-    <view class="updown">
-
-      <view class="five">
-      <view style="background-color:rgb({{m1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
-      <view style="background-color:rgb({{m2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
-      <view style="background-color:rgb({{m3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
-      <view style="background-color:rgb({{m4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
-      <view style="background-color:rgb({{m5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{m6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
-      <view style="background-color:rgb({{m7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
-      <view style="background-color:rgb({{m8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
-      <view style="background-color:rgb({{m9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
-      <view style="background-color:rgb({{m10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{m11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
-      <view style="background-color:rgb({{m12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
-      <view style="background-color:rgb({{m13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
-      <view style="background-color:rgb({{m14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
-      <view style="background-color:rgb({{m15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
-    </view>
-    
-  </view>
-    <text class='tit25r'>{{t1}}</text>
+<view class="block" style="height: {{bh[4]}}px;background-color: #F99494;box-shadow: -23rpx -14px 15rpx 0px #ffffff4b inset,5rpx 3px 15rpx 0px #f9949486;">
+  <image class="sImg" src="4.png" mode="aspectFit" style="transform: rotate({{ba[4]}}deg)" bindtap="show4"></image>
+  <text class="blockTitle">算法能力</text>
+  <text class="blockSmallTitle">平均时间: {{algorithmTimeMinute}}分{{algorithmTimeSecond}}秒  正确率{{right3}}%</text>
+  <view class="queBox">
+    <view class="que" style="background-color:rgb({{color[4][1]}});border-width:{{border[4][1]}}rpx;">1</view>
+    <view class="que" style="background-color:rgb({{color[4][2]}});border-width:{{border[4][2]}}rpx;">2</view>
+    <view class="que" style="background-color:rgb({{color[4][3]}});border-width:{{border[4][3]}}rpx;">3</view>
+    <view class="que" style="background-color:rgb({{color[4][4]}});border-width:{{border[4][4]}}rpx;">4</view>
+    <view class="que" style="background-color:rgb({{color[4][5]}});border-width:{{border[4][5]}}rpx;">5</view>
   </view>
 </view>
-
-<view class="fenzhi">
-  <text class='tit25'>算法能力</text>
-  <view class="leftright">
-    <view class="updown">
-
-      <view class="five">
-      <view style="background-color:rgb({{s1}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">1</view>
-      <view style="background-color:rgb({{s2}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">2</view>
-      <view style="background-color:rgb({{s3}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">3</view>
-      <view style="background-color:rgb({{s4}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">4</view>
-      <view style="background-color:rgb({{s5}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">5</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{s6}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">6</view>
-      <view style="background-color:rgb({{s7}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">7</view>
-      <view style="background-color:rgb({{s8}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">8</view>
-      <view style="background-color:rgb({{s9}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">9</view>
-      <view style="background-color:rgb({{s10}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">10</view>
-    </view>
-
-    <view class="five">
-      <view style="background-color:rgb({{s11}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">11</view>
-      <view style="background-color:rgb({{s12}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">12</view>
-      <view style="background-color:rgb({{s13}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">13</view>
-      <view style="background-color:rgb({{s14}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">14</view>
-      <view style="background-color:rgb({{s15}});font-size: 50rpx; height:80rpx; width:80rpx;text-align: center;  margin: 0 10rpx;">15</view>
-    </view>
-    
-  </view>
-    <text class='tit25r'>{{t1}}</text>
-  </view>
-</view>
-
-
-
-<view class='placeholder-view'></view>
-<view class="btn-view">
-  <button class='btn'>再试一次</button>
-  <button class='save' bindtap="toastShow">保存详细报告</button>
-  <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
-        链接已经复制到剪切板
-</toast>
-</view>
-
-
-
-  <!-- <view class="my-chart">
-  <ec-canvas id="mychart-dom2" canvas-id="mychart2" ec="{{ec2}}" force-use-old-canvas="bo"></ec-canvas>
-</view>
-  <view class="my-chart">
-  <ec-canvas id="mychart-dom3" canvas-id="mychart3" ec="{{ec3}}" force-use-old-canvas="bo"></ec-canvas>
-</view> -->

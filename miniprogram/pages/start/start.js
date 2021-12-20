@@ -1,4 +1,5 @@
 // pages/start/start.js
+//
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
 
   startQuestion:function()
   {
-    wx.reLaunch({ url: '/pages/select/index'});
+    wx.reLaunch({ url: '../divide/divede'});
   },
 
   /**

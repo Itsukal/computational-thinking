@@ -1,219 +1,150 @@
-// pages/select/index.js
+/********************************************** */
 var intt;
-const amoutnOfQuestion=10;
-const test=10;
-const nextTet=2323;
-const fafad=32232;
+const amoutnOfQuestion=13;  //题目总数
+//0是算法能力，1是分治能力，2是抽象能力，3是模式识别能力
+let right=[0,0,0,0];  //正确率
+let wrong=[0,0,0,0];  //错误率
+let currentOfQuestion=0;   //当前题目下标
+let selectId=0;    //选中选项的标号
+var scrHei=0; //屏幕高度
+/************************************************* */
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-    questionArray:{
-      answer:1,
-      text:" ",
-      fileID:" ",
-    },
-
-    myImage:"../../images/1.jpg",
-
-    view1: 'selection1', 
-    view2: 'selection1', 
-    view3: 'selection1', 
-    view4: 'selection1', 
-    // 正确答案为2，后台会给的 
-    key: 2, 
-    // 图片url的地址
-    imageUrl:" ",
-    // 选项是否被点击 
-    isSelect: false,
-
-    //时间
-    hour: 0,
-    minute: 0,
-    second: 0,
-    millisecond: 0,
-    timecount: '0分0秒',
-    cost: 0,
-    flag: 1,
-    endtime: "",
-
-    //与答案相关的数据
-
-    currentOfQuestion:0,
-    right:0,
-    wrong:0,
-
-    flag:false,
+data: {
+  /*********************从数据库请求而来的题目对象****************************/
+  questionArray:{
+    answer:1,     //答案
+    text:" ",     //文本
+    fileID:" ",   //图片路径
+    type:0,       //题目类型
   },
+  /******************************************************************** */
 
-  //选择组件相关函数
-  view1Click: function(e) { 
-    let select = e.target.id 
-    // 选项没被选择时将执行 
-    if (!this.data.isSelect) { 
-     // 将选项设置为“已被选择” 
-     this.setData({ 
-      isSelect: true,
-      view1: 'selection2'
-     }) 
-     if(select==this.data.key)
-     {
-       let right=this.data.right;
-       this.setData({
-         right:right+1,
-         currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }else{
-       let wrong=this.data.wrong;
-       this.setData({
-        wrong:wrong+1,
-        currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }
-     // 注意！此处必须是'=='而不是'=' 
-    //  if (select == this.data.key) { 
-    //   this.setData({ 
-    //    view1: 'selection2'
-    //   }) 
-    //  } else { 
-    //   this.setData({ 
-    //    view1: 'selection3'
-    //   }) 
-    //   // 将正确选项显示出来 
-    //   this.showAnswer(this.data.key) 
-    //  } 
-    
-    } 
-   }, 
-   view2Click: function(e) { 
-    let select = e.target.id;
-    // 选项没被选择时将执行 
-    if (!this.data.isSelect) { 
-     this.setData({ 
-      isSelect: true,
-      view2:'selection2'
-     }) 
-     if(select==this.data.key)
-     {
-       let right=this.data.right;
-       this.setData({
-         right:right+1,
-         currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }else{
-       let wrong=this.data.wrong;
-       this.setData({
-        wrong:wrong+1,
-        currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }
-     setTimeout(this.jumpToNext,2000);
-     // 注意！此处必须是'=='而不是'=' 
-    //  if (select == this.data.key) { 
-    //   this.setData({ 
-    //    view2: 'selection2'
-    //   }) 
-    //  } else { 
-    //   this.setData({ 
-    //    view2: 'selection3'
-    //   }) 
-    //   // 将正确选项显示出来 
-    //   this.showAnswer(this.data.key) 
-    //  } 
-    
-    } 
-   }, 
-   view3Click: function(e) { 
-    let select = e.target.id 
-    // 选项没被选择时将执行 
-    if (!this.data.isSelect) { 
-     this.setData({ 
-      isSelect: true,
-      view3:'selection2'
-     }) 
-     if(select==this.data.key)
-     {
-       let right=this.data.right;
-       this.setData({
-         right:right+1,
-         currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }else{
-       let wrong=this.data.wrong;
-       this.setData({
-        wrong:wrong+1,
-        currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }
+  /****************四个选项的class **************************/
+  view1: 'selection1', 
+  view2: 'selection1', 
+  view3: 'selection1', 
+  view4: 'selection1', 
+  /**************************** *****************************/
+  text:"自幼年便远渡重洋为国卧底的川建国同志卧薪尝胆多年才终于拿到了M国最高权力",
+  key: 2,   // 正确答案
+  imageUrl:" ", // 图片url的地址
+  isSelect: false,   // 选项是否被点击 
 
+  /**************************时间******************************/
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0,
+  timecount: '0分0秒',
+  cost: 0,
+  endtime: "",
+  /***************************************************************/
+  index:1,
+  flag:false,       //表示当前页面未渲染完毕，不可加载
+  //屏幕高度
+  scrHei:0,
+},
 
-     // 注意！此处必须是'=='而不是'=' 
-    //  if (select == this.data.key) { 
-    //   this.setData({ 
-    //    view3: 'selection2'
-    //   }) 
-    //  } else { 
-    //   this.setData({ 
-    //    view3: 'selection3'
-    //   }) 
-    //   // 将正确选项显示出来 
-    //   this.showAnswer(this.data.key) 
-    //  } 
-    
-    } 
-   }, 
-   view4Click: function(e) { 
-    let select = e.target.id 
-    // 选项没被选择时将执行 
-    if (!this.data.isSelect) { 
-     this.setData({ 
-      isSelect: true,
-      view4:'selection2'
-     }) 
-     if(select==this.data.key)
+//选择组件相关函数
+view1Click: function(e) { 
+  selectId = parseInt(e.target.id); 
+  console.log("selectId:"+selectId);
+   switch(selectId)
+  { 
+    case 1: //选择选项A
+      this.setData({ 
+        view1: 'selection2',
+        view2: 'selection1',
+        view3: 'selection1',
+        view4: 'selection1'
+       }) 
+       console.log("test"+this.data.view1);
+       break;
+    case 2: //选择选项B
+      this.setData({ 
+        view1: 'selection1',
+        view2: 'selection2',
+        view3: 'selection1',
+        view4: 'selection1'
+       }) 
+       break;
+    case 3: //选择选项C
+      this.setData({ 
+        view1: 'selection1',
+        view2: 'selection1',
+        view3: 'selection2',
+        view4: 'selection1'
+       }) 
+       break;
+    case 4: //选择选项D
+      this.setData({ 
+        view1: 'selection1',
+        view2: 'selection1',
+        view3: 'selection1',
+        view4: 'selection2'
+       }) 
+       break;
+    }
+}, 
+submit:function()
+{
+  //如果选择等于正确答案
+  console.log("selectId"+selectId)
+  console.log("right:"+right);
+     if(selectId==this.data.key)  //答案正确
      {
-       let right=this.data.right;
-       this.setData({
-         right:right+1,
-         currentOfQuestion:this.data.currentOfQuestion+1
-       })
-     }else{
-       let wrong=this.data.wrong;
-       this.setData({
-        wrong:wrong+1,
-        currentOfQuestion:this.data.currentOfQuestion+1
-       })
+       //获取当前题型类型
+      let type=this.data.questionArray.type;
+      let app=getApp();
+      switch(type)
+      {
+        case 0: //题目为算法题型
+          right[type]+=1;
+          let tempIndex=currentOfQuestion-5;
+          app.globalData.algorithmIsRight[tempIndex]=1;
+          console.log(right);
+          break;
+        case 1: //题型为分治题型
+          right[type]+=1;
+          console.log(right[type]);
+          break;
+        case 2: //题型为抽象题型
+          right[type]+=1;
+          let temp=currentOfQuestion;
+          app.globalData.abstractIsRight[temp]=1;
+          break;
+        case 3: //题型为模式识别题型
+          right[type]+=1;
+          let index=currentOfQuestion-10+2;
+          app.globalData.abstractIsRight[index]=1;
+          break;
+      }
+      currentOfQuestion+=1; //当前题目+1
+      console.log("selectId"+selectId)
      }
-     // 注意！此处必须是'=='而不是'=' 
-    } 
-   }, 
-   showAnswer: function(key) { 
-    // 通过swith语句判断正确答案，从而显示正确选项 
-    switch (key) { 
-     case 1: 
-      this.setData({ 
-       view1: 'selection2'
-      }) 
-      break; 
-     case 2: 
-      this.setData({ 
-       view2: 'selection2'
-      }) 
-      break; 
-     case 3: 
-      this.setData({ 
-       view3: 'selection2'
-      }) 
-      break; 
-     default: 
-      this.setData({ 
-       view4: 'selection2'
-      }) 
-    } 
-   },
+     //答案错误
+     else{
+       //获取当前题型类型
+      let type=this.data.questionArray.type;
+      switch(type)
+      {
+        case 0: //题型为算法
+          wrong[type]+=1;
+          break;
+        case 1: //题型为分治
+          wrong[type]+=1;
+          break;
+        case 2: //题型为抽象
+          wrong[type]+=1;
+        case 3: //题型为模式识别
+          wrong[type]+=1;
+      }
+      currentOfQuestion+=1; //当前题目数+1
+     }
+     console.log("selectId"+selectId)
+     console.log("right:"+right);
+     setTimeout(this.jumpToNext,200); //下一题
+},
 
   onChange(event) {
     this.setData({
@@ -226,6 +157,11 @@ Page({
    */
   //与顶部时间相关的函数
   onLoad: function () {
+    wx.getSystemInfo({
+      success: function (res) {
+        scrHei=res.windowHeight;
+      }
+    })
     var that = this;
     //停止（暂停）
     //clearInterval(intt);
@@ -234,13 +170,15 @@ Page({
       minute: 0,
       second: 0,
       millisecond: 0,
+      scrHei: scrHei
     })
     intt = setInterval(function () { that.timer() }, 1000);
-    console.log("question:"+this.data.currentOfQuestion);
+    // console.log("question:"+this.data.currentOfQuestion);
     
-    let tempNumber=this.data.currentOfQuestion+1;
-    let number=tempNumber.toString();
-    console.log(number);
+    let tempNumber=currentOfQuestion+1; //获取当前是第几题
+    let number=tempNumber.toString(); //由于数据库里的题号类型为string，因此number转成string
+    // console.log(number);
+    //调用云函数
     wx.cloud.callFunction({
       name:"getData",
       data:{
@@ -248,11 +186,11 @@ Page({
       }
     }).then(res=>{
       console.log(res);
-      console.log(res.result.data[0].text);
+      console.log(res.result.data[0]);
       this.setData({
-        questionArray:res.result.data[0],
-        key:res.result.data[0].answer,
-        flag:true,
+        questionArray:res.result.data[0], //请求到当前题号对应的题目对象
+        key:res.result.data[0].answer,    //设置当前题号对应的答案
+        flag:true,                        //表示当前页面渲染完毕，可以加载
       })
     })
 
@@ -272,6 +210,7 @@ Page({
       timecount: "0分0秒",
     })
   },
+
   timer: function () {
     var that = this;
     //console.log(that.data.millisecond)
@@ -301,6 +240,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //隐藏左上角的home键
     if (wx.canIUse('hideHomeButton')) {
       wx.hideHomeButton();
     };
@@ -357,44 +297,94 @@ Page({
   jumpToNext:function()
   {
     this.setData({
-      flag:false,
+      flag:false,     //跳向下一题，说明未选择，置为false
     })
-  if(this.data.currentOfQuestion==3)
+    if(currentOfQuestion==5)
+    {
+      let app=getApp();
+      let tempSecond=this.data.minute*60+this.data.second;
+      app.globalData.abstractTimeSecond+=tempSecond;
+    }
+    if(currentOfQuestion==10)
+    {
+      let app=getApp();
+      let tempSecond=this.data.minute*60+this.data.second-app.globalData.abstractTimeSecond;
+      app.globalData.algorithmTimeSecond+=tempSecond;
+    }
+    if(currentOfQuestion==13)
+    {
+      let app=getApp();
+      let tempSecond=this.data.minute*60+this.data.second-app.globalData.abstractTimeSecond-app.globalData.algorithmTimeSecond;
+      console.log(this.data.minute*60);
+      console.log(this.data.minute);
+      console.log(this.data.second);
+      console.log(app.globalData.abstractTimeSecond);
+      console.log(app.globalData.algorithmTimeSecond);
+      console.log("pattern: Second"+tempSecond);
+      let test=parseInt(tempSecond/60);
+      console.log(test);
+      app.globalData.patternTimeSecond+=tempSecond;
+    }
+    let app=getApp();
+    console.log("pattern"+app.globalData.patternTimeSecond);
+    console.log("algorithm"+app.globalData.algorithmTimeSecond);
+    console.log("abstract"+app.globalData.abstractTimeSecond);
+  if(currentOfQuestion==amoutnOfQuestion) //如果当前题号等于题目总数，说明选择题回答完毕
      {
+       //调用云函数
        wx.cloud.callFunction({
          name:"addData",
          data:{
-           time:this.data.timecount,
-           right:this.data.right,
-           wrong:this.data.wrong
+           time:this.data.timecount,  //传答题消耗的时间
          }
        })
-       let currentOfQuestion=this.data.currentOfQuestion;
+       //传到app.js
+       let app=getApp();
+       for(let index=0;index<4;index++) //全局的正确数和错误数   加上选择题页面对应的正确数和错误数
+       {
+         app.globalData.right[index]+=right[index];
+         console.log(app.globalData.right[index]);
+         app.globalData.wrong[index]+=wrong[index];
+       }
+       console.log(app.globalData.right);
+       console.log(app.globalData.wrong);
+
+      //  console.log(app.globalData.right);
+      //跳转到下一页面
       wx.reLaunch({ url: '/pages/end/end?amount='+currentOfQuestion+"&total="+amoutnOfQuestion});
-     }else{
-      let tempNumber=this.data.currentOfQuestion+1;
-      let number=tempNumber.toString();
+
+     }else  //否则
+     {
+      let tempNumber=currentOfQuestion+1; //获取当前题号
+      let number=tempNumber.toString();   
       console.log(number);
+      //调用云函数
       wx.cloud.callFunction({
         name:"getData",
         data:{
-          number:number,
+          number:number,  //传下一题的题号
         }
       }).then(res=>{
         console.log(res);
        this.setData({
         //  currentOfQuestion:this.data.currentOfQuestion+1,
-         questionArray:res.result.data[0],
-         key:res.result.data[0].answer,
-         isSelect:false,
-         view1: 'selection1', 
+         questionArray:res.result.data[0],  //获得下一题题号对应得题目对象
+         key:res.result.data[0].answer,     //设置下一题题号对应得答案
+         isSelect:false,                  //置为未选择状态
+         view1: 'selection1',             
          view2: 'selection1', 
          view3: 'selection1', 
          view4: 'selection1', 
-         flag:true
+         index:this.data.index+1,
+         flag:true                      //表示当前页面已渲染完毕，可以加载
        })
       })
     }
     console.log("jump!");
-  }   
+  } ,
+
+  test:function()
+  {
+    console.log("nmsl");
+  }
 })

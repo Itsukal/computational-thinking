@@ -1,5 +1,30 @@
 //app.js
 App({
+
+	globalData:({
+		timecount:" ",
+		//用户的正确率与平均正确率
+//0是算法能力，1是分治能力，2是抽象能力，3是模式识别能力
+		 right:[0,0,0,0],
+		 wrong:[0,0,0,0],
+		 currentOfQuestion:13,		//选择题题目总数
+		 questionAmount:[5,1,5,5],
+		 divideIsRight:[0,0,0,0],
+		 patternIsRight:[0,0,0,0,0],
+		 abstractIsRight:[0,0,0,0,0],
+		 algorithmIsRight:[0,0,0,0,0],
+		 divideTimeMinute:0,
+		 divideTimeSecond:0,
+		 patternTimeMinute:0,
+		 patternTimeSecond:0,
+		 abstractTimeMinute:0,
+		 abstractTimeSecond:0,
+		 algorithmTimeMinute:0,
+		 algorithmTimeSecond:0,
+		 	
+	}),
+
+
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -14,7 +39,24 @@ App({
       })
     }
     this.overShare();
-    this.globalData = {}
+    this.globalData = {
+			right:[0,0,0,0],
+		 wrong:[0,0,0,0],
+		 currentOfQuestion:13,
+		 questionAmount:[5,1,5,5],
+		 divideTimeMinute:0,
+		 divideTimeSecond:0,
+		 patternTimeMinute:0,
+		 patternTimeSecond:0,
+		 abstractTimeMinute:0,
+		 abstractTimeSecond:0,
+		 algorithmTimeMinute:0,
+		 algorithmTimeSecond:0,
+		 divideIsRight:[0,0,0,0],
+		 patternIsRight:[0,0,0,0,0],
+		 abstractIsRight:[0,0,0,0,0],
+		 algorithmIsRight:[0,0,0,0,0],
+		}
   },
 
   overShare() {
@@ -28,7 +70,6 @@ App({
 				data;
 			if (view) {
 				data = view.data;
-				console.log('是否重写分享方法', data.isOverShare);
 				if (!data.isOverShare) {
 					data.isOverShare = true;
 					view.onShareAppMessage = function() {

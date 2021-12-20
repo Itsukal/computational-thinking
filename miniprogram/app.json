@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/add/add",
-    "pages/index/index",
     "pages/begin/begin",
     "pages/start/start",
+    "pages/divide/divede",
+    "pages/patternRecognition/patternRecognition",
+    "pages/programming/programming",
+    "pages/patternRecognitionTwo/patternRecognitionTwo",
     "pages/select/index",
-    "pages/end/end",
-    "pages/report1/report1"
+    "pages/end/end"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

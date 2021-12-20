@@ -1,14 +1,11 @@
-<view>movable-view组件</view>
-<view class='section'>
-  <view class='section_title'>movable-view区域小于movable-area</view>
-  <movable-area style='height:200rpx;width:200rpx;background:red;'>
-    <movable-view style="height:50rpx;width:50rpx;background:yellow;"  direction='all' inertia='true'></movable-view>
-  </movable-area>
-  <view class='btn-area'>
-    <button size='mini' bindtap="tap">click me to move to(30rpx,30rpx)</button>
-  </view>
-  <view>movable区域大于movable-area</view>
-  <movable-area style='height:100rpx;width:100rpx;background:red;'>
-    <movable-view style="height:200rpx;width:200rpx;background:blue;" direction='all' bindchange='onchange' bindscale='onscale' scale scale-min='0.5' scale-max='4' scale-value='2'></movable-view>
-  </movable-area>
-</view>
+<!-- pages/index/index.wxml
+
+<!-- direction方向，1，2，3，4分别代表上下左右 -->
+<button data-walk_nums="3" data-direction="0" bindtap="walk">
+  text;
+</button>
+
+<!-- <button data-direction="1" bindtap="turnDirection">direction</button>
+<view class="scope" style="top:10px;height:10px>
+  <image   class="scopeImg" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/QQ截图20210504220039.png" mode="aspectFit"></image>
+</view> --> -->

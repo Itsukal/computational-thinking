@@ -8,7 +8,7 @@ Page({
 
   toReport1:function(){
     wx.reLaunch({
-      url: '/pages/report1/report1',
+      url: '/pages/judge/index',
     })
   },
   /**
@@ -92,5 +92,6 @@ Page({
       path: '../begin/begin',
 
       }
-    }
+    },
+    
 })
