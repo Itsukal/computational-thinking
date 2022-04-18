@@ -1,0 +1,10 @@
+<form bindsubmit="btnSub">
+  <input name="number" placeholder="请输入问题的序号"></input>
+  <input name="answer" placeholder="请输入答案"> </input>
+  <input name="selection" placeholder="请输入选项"></input>
+  <input name="text" placeholder="请输入问题文本内容"></input>
+  <input name="fileID" placeholder="请输入图片的fileID"></input>
+  <button form-type="submit">提交</button>
+
+  <image src=""></image>
+</form>

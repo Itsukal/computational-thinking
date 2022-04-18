@@ -1,0 +1,90 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "select",
+          "pathName": "pages/select/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "begin",
+          "pathName": "pages/begin/begin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "report",
+          "pathName": "pages/report1/report1",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "add",
+          "pathName": "pages/add/add",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "test",
+          "pathName": "pages/test/testOne",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "judge",
+          "pathName": "pages/judge/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pattern",
+          "pathName": "pages/patternRecognition/patternRecognition",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "divide",
+          "pathName": "pages/divide/divede",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "end",
+          "pathName": "pages/end/end",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

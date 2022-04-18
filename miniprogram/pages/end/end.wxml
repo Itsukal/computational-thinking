@@ -1,0 +1,15 @@
+<!--刚进入小程序时候的界面-->
+
+
+<view class="bk">
+  <image class="bkImg" src="https://6974-itsuka-2g3ncu8f726d1e3e-1305410037.tcb.qcloud.la/image/bk.jpg?sign=160669cd35ac2da9492add6beef25016&t=1641654341" mode="aspectFill"></image>
+</view>
+<view class="title">
+  <text class="t1">您好小朋友</text>
+  <view>
+   <text class="t2">请将手机交还\n家长</text>
+   <text class="t3">\n已完成 {{currentOfQuestion}}/{{amountOfQuestion}}</text>
+  </view>
+</view>
+<button class="but1" bindtap='返回答题'>继续答题</button>
+<button class="but2" bindtap='toReport1'>完成试卷</button>

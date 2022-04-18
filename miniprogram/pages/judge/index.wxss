@@ -1,0 +1,122 @@
+page{
+  width: 100%;
+  height: 100%;
+  background-color: #454545;
+}
+
+
+
+.block{
+  display: fixed;
+  justify-content:center;
+  margin:0 auto;
+  width:700rpx;
+  border-radius: 40rpx;
+  margin-top: 20px;
+  overflow:hidden;
+}
+
+.oneCan {
+  top:0;
+  left:500rpx;
+}
+
+.weui2 {
+  position: absolute;
+  top:20px;
+  width:400rpx;
+}
+
+
+.canva{
+  width:100%;
+}
+
+.Title{
+  width: 198rpx;
+  height:19px;
+  position: relative;
+  top:10px;
+  left:30rpx;
+  font-weight: 1000;
+  font-size: 20px;
+  color:#2BC368;
+}
+
+.topBar
+{
+    width:100%;
+    height:150rpx;
+    position: fixed;
+    z-index: 999;
+}
+
+
+.chart_Title{
+  width: 198rpx;
+  height:19px;
+  position: relative;
+  top:10px;
+  left:30rpx;
+  font-weight: 1000;
+  font-size: 18px;
+  color:#0C4D51;
+}
+
+.sImg{
+  position: relative;
+  top:5px;
+  left:10rpx;
+  width: 80rpx;
+  height: 30px;
+}
+.blockTitle{
+  width: 198rpx;
+  height:19px;
+  position: relative;
+  top:-5px;
+  left:30rpx;
+  font-weight: 1000;
+  font-size: 15px;
+}
+.blockSmallTitle{
+  width: 198rpx;
+  height:19px;
+  position: relative;
+  top:-6px;
+  left:50rpx;
+  font-weight: 1000;
+  font-size: 11px;
+}
+.queBox{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top:0px;
+  left:30rpx;
+  margin:0 auto;
+  width:600rpx;
+  height:50px;
+  border-radius: 40rpx;
+  background-color: #45454500
+}
+.que{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  font-size: 17px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: #F9914C;
+  position: relative;
+  width:90rpx;
+  height:90rpx;
+  border-radius: 25rpx;
+  margin:16rpx;
+  background-color: #454545;
+  box-shadow: 5rpx 3px 10rpx 0px #ffffff7e;
+  text-shadow: 3rpx 1px 5rpx #ffffff;
+}
+button:after{
+  border:0;
+}

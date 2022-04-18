@@ -1,0 +1,59 @@
+
+
+<view class="bk">
+  <image class="bkImg" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/divide/divideOne/divideBk.jpg" mode="aspectFill"></image>
+</view>
+
+<view class="scope" style="top:{{topValue}}px;height:{{heightValue}}px">
+  <image class="scopeImg" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/divide/divideOne/divideScope.png" mode="aspectFit"></image>
+</view>
+
+<view class="arrowScope" style="top:{{(scrHei-scopeHei)/2*1.1*0.5}}px;height:{{(scrHei-scopeHei)/2*1.1*0.4}}px;width:{{scrWid}}px">
+  <view class="arrow1" style="z-index:2;position:absolute;width:{{plateWid}}px;height:100%;left:{{plateLf[1]}}px">
+    <image class="arrow1Img" src="{{posSpe[1][0]}}" mode="aspectFit"></image>
+  </view>
+  <view class="arrow2" style="z-index:2;position:absolute;width:{{plateWid}}px;height:100%;left:{{plateLf[2]}}px">
+    <image class="arrow2Img" src="{{posSpe[2][0]}}" mode="aspectFit"></image>
+  </view>
+  <view class="arrow3" style="z-index:2;position:absolute;width:{{plateWid}}px;height:100%;left:{{plateLf[3]}}px">
+    <image class="arrow3Img" src="{{posSpe[3][0]}}" mode="aspectFit"></image>
+  </view>
+</view>
+
+<view class="plateScope" style="top:{{(scrHei-scopeHei)/2}}px;height:{{scopeHei}}px;width:{{scrWid}}px">
+  <view class="p13" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[1][3]}}px;left:{{plateLf[1]}}px">
+    <image class="p13Img" src="{{posSpe[1][3]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p12" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[1][2]}}px;left:{{plateLf[1]}}px">
+    <image class="p12Img" src="{{posSpe[1][2]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p11" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[1][1]}}px;left:{{plateLf[1]}}px">
+    <image class="p11Img" src="{{posSpe[1][1]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p23" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[2][3]}}px;left:{{plateLf[2]}}px">
+    <image class="p23Img" src="{{posSpe[2][3]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p22" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[2][2]}}px;left:{{plateLf[2]}}px">
+    <image class="p22Img" src="{{posSpe[2][2]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p21" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[2][1]}}px;left:{{plateLf[2]}}px">
+    <image class="p21Img" src="{{posSpe[2][1]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p33" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[3][3]}}px;left:{{plateLf[3]}}px">
+    <image class="p33Img" src="{{posSpe[3][3]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p32" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[3][2]}}px;left:{{plateLf[3]}}px">
+    <image class="p32Img" src="{{posSpe[3][2]}}" mode="aspectFit"></image>
+  </view>
+  <view class="p31" style="z-index:2;position:absolute;width:{{plateWid}}px;height:{{plateHei}}px;top:{{plateTop[3][1]}}px;left:{{plateLf[3]}}px">
+    <image class="p31Img" src="{{posSpe[3][1]}}" mode="aspectFit"></image>
+  </view>
+</view>
+
+<button class="reBut" style="top:{{butTop}}px;height:{{butHei}}px;width:{{butWid}}px;left:{{reLf}}px;background-color:transparent;background-color: rgba(255, 0, 0, {{reButColor}});" bindtap="restart"></button>
+<button class="subBut" style="top:{{butTop}}px;height:{{butHei}}px;width:{{butWid}}px;left:{{subLf}}px;background-color:transparent;background-color: rgba(255, 0, 0, {{subButColor}});" bindtap="submit"></button>
+<button class="select1" style="top:{{selectTop}}px;height:{{selectHei}}px;width:{{select13Wid}}px;left:{{s1Lf}}px;background-color:transparent;" bindtap="select1"></button>
+<button class="select2" style="top:{{selectTop}}px;height:{{selectHei}}px;width:{{select2Wid}}px;left:{{s2Lf}}px;background-color:transparent;" bindtap="select2"></button>
+<button class="select3" style="top:{{selectTop}}px;height:{{selectHei}}px;width:{{select13Wid}}px;left:{{s3Lf}}px;background-color:transparent;" bindtap="select3"></button>
+
+<van-dialog id="van-dialog" />

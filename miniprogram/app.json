@@ -1,0 +1,24 @@
+{
+  "pages": [
+    
+    "pages/begin/begin",
+    "pages/start/start",
+    "pages/divide/divede",
+    "pages/patternRecognition/patternRecognition",
+    "pages/programming/programming",
+    "pages/patternRecognitionTwo/patternRecognitionTwo",
+    "pages/select/index",
+    "pages/end/end"
+  ],
+  "usingComponents": {
+    "van-tag": "@vant/weapp/tag/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+  },
+
+  "window": {
+    "navigationBarTitleText": "计算思维 评测工具",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

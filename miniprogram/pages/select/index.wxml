@@ -1,0 +1,48 @@
+
+<view class="container">
+
+<view class="imageBackground"></view>
+  <!-- 问题下标 -->
+  <!-- <view class="questionIndex">
+    {{index}}、
+  </view> -->
+  <!-- 文本框组件 -->
+  <view class="textBox">
+      <!-- 单选标签 -->
+      <view class="tag">
+          <van-tag mark type="danger" text-color="black" color="rgb(255,255,255)">选择题</van-tag>
+      </view>
+      <!-- 题目文字区域 -->
+      <view  class="questionText">
+        {{index}}.{{questionArray.text}}
+      </view>
+      <!-- 图片 -->
+      <view wx:if='{{questionArray.fileID}}' class="outBoarder" style="height: {{scrHei*0.3}}px">
+        <image  class="thisImage" lazyload fit="widthFix" src="{{questionArray.fileID}}" mode="aspectFit" style="height: {{scrHei*0.29}}px"></image>
+      </view>
+      <!-- 底部背景 -->
+     <view class="groundBackgroundOne" style="height: {{scrHei*0.57}}px">
+        <view class="groundBackgroundTwo" style="height: {{scrHei*0.57}}px">
+          <view class="selectionBox">
+            <view class='{{view1}}' bindtap='view1Click'  id='1'>
+          A {{questionArray.selection[0]}}</view>
+          <view class='{{view2}}' bindtap='view1Click'  id='2'>
+          B {{questionArray.selection[1]}}
+          </view>
+          <view class='{{view3}}' bindtap='view1Click'  id='3'>
+          C {{questionArray.selection[2]}}</view>
+          <view class='{{view4}}' bindtap='view1Click'  id='4'>
+          D {{questionArray.selection[3]}}</view>
+          </view>
+        </view>
+      </view> 
+  </view>
+</view>
+
+<view class="groundBar">
+            <view class="time">
+              {{timecount}}
+            </view>
+            <button wx:if="{{currentOfQuestion==13}}" bindtap="submit" class="submit">交卷</button>
+            <button wx:if="{{currentOfQuestion}}！=13" bindtap="submit" class="submit">下一题</button>
+</view>

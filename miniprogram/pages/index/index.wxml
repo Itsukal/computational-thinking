@@ -1,0 +1,11 @@
+<!-- pages/index/index.wxml
+
+<!-- direction方向，1，2，3，4分别代表上下左右 -->
+<button data-walk_nums="3" data-direction="0" bindtap="walk">
+  text;
+</button>
+
+<!-- <button data-direction="1" bindtap="turnDirection">direction</button>
+<view class="scope" style="top:10px;height:10px>
+  <image   class="scopeImg" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/QQ截图20210504220039.png" mode="aspectFit"></image>
+</view> --> -->

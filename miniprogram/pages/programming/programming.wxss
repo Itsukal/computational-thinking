@@ -1,0 +1,231 @@
+Page {
+  background-color: white;
+}
+
+.TopRegion {
+  position: absolute;
+  height: 40rpx;
+  width: 100%;
+  padding-top: 20rpx;
+  padding-left: 10rpx;
+  padding-bottom: 0;
+  z-index: 2;
+}
+
+.TopQue {
+  height: 40rpx;
+  width: 40rpx;
+  margin: 5rpx;
+  margin-right: 15rpx;
+  display: inline-flex;
+  background-color: white;
+  border-radius: 20rpx;
+  float: left;
+}
+
+.TopTip {
+  background-color: #FF8AC4;
+  color: white;
+  line-height: 50rpx;
+  height: 50rpx;
+  display: block;
+  text-align: center;
+  border-radius: 10rpx;
+  float: left;
+  font-size: 24rpx;
+  overflow: hidden;
+}
+
+.TopClose {
+  height: 40rpx;
+  width: 40rpx;
+  float: right;
+  margin-top: 5rpx;
+  margin-right: 7rpx;
+}
+
+.MissionRegion {
+  background-color: #4ACCDA;
+  height: 360rpx;
+  line-height: 200rpx;
+  width: 100%;
+  margin: 30rpx auto;
+}
+
+.MissionPath {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+}
+
+.CodeRegionTop {
+  height: 70rpx;
+  width: 100%;
+  background-color: #FFEE68;
+  border-width: 0;
+  border-bottom-width: 6rpx;
+  border-style: solid;
+  border-color: #EA8F4F;
+  color: #DF7220;
+  line-height: 70rpx;
+}
+
+.CodeRegionTopPencil {
+  height: 50rpx;
+  width: 50rpx;
+  margin: 10rpx 20rpx;
+  display: inline-block;
+  float: left;
+}
+
+.CodeRegionTopReset {
+  height: 50rpx;
+  width: 50rpx;
+  margin: 10rpx 20rpx;
+  display: inline-block;
+  float: right;
+}
+
+
+
+/* 以下是ps代码区 */
+.ps {
+  display: flex;
+  flex-flow: row;
+  width: 750rpx;
+}
+
+
+.CodeStorage {
+  width: 28%;
+  background-color: #FF8AC4;
+  border-width: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+.CodeEditor {
+  width: 72%;
+  /* background-color:; */
+  border-width: 0;
+}
+
+.Codebox {
+  display: flex;
+  flex-flow: column;
+}
+
+.Code {
+  height: 80rpx;
+  width: 160rpx;
+  margin: 40rpx 27rpx 0rpx 27rpx;
+  /* 上右下左 */
+  display: inline-block;
+  background-color: yellowgreen;
+  /* float: right; */
+}
+
+.CodeImage {
+  width: 100%;
+  height: 100%;
+}
+
+.DirectionPoint {
+  position: relative;
+  top: -80rpx;
+  left: 15rpx;
+  width: 50rpx;
+  height: 60rpx;
+}
+
+.TextDirection {
+  color: white;
+  line-height: 20px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -100rpx;
+  left: 15rpx;
+  font-size: 35rpx;
+}
+
+.BinBackground {
+  width: 100%;
+  background-color: #FF8AC4;
+  border-width: 0;
+  z-index: 2;
+}
+
+.BinRegion {
+  margin: 10vw auto;
+  height: 20vw;
+  width: 20vw;
+  z-index: 3;
+}
+
+.BinLogo {
+  height: 20vw;
+  width: 20vw;
+}
+
+.StartCode {
+  height: 80rpx;
+  width: 180rpx;
+  margin: 40rpx 27rpx 0rpx 80rpx;
+  /* 上右下左 */
+  display: inline-block;
+  /* left: 100rpx; */
+  /* background-color:yellowgreen; */
+  /* float: right; */
+}
+
+.StartCircle {
+  position: relative;
+  top: -80rpx;
+  left: 15rpx;
+  width: 53rpx;
+  height: 53rpx;
+}
+
+.TextStartUp {
+  color: white;
+  line-height: 20px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -95rpx;
+  left: 25rpx;
+  font-size: 35rpx;
+}
+
+
+.StartBut {
+  position: fixed;
+  bottom: 50rpx;
+  right: 70rpx;
+  margin: 0;
+  width: 180rpx;
+  height: 80rpx;
+}
+
+.TextStartDown {
+  color: #DF7220;
+  line-height: 20px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: -95rpx;
+  left: 25rpx;
+  font-size: 35rpx;
+}
+
+.MoveCode {
+  height: 80rpx;
+  width: 160rpx;
+  margin: 0rpx 0rpx 0rpx 0rpx;
+  /* 上右下左 */
+  display: inline-block;
+  /* background-color:yellowgreen; */
+  /* float: right; */
+  z-index: 2;
+}
