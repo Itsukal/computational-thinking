@@ -19,7 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    // if (wx.canIUse('hideHomeButton')) {
+    //   wx.hideHomeButton();
+    // };
   },
 
   /**
@@ -32,10 +34,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    if (wx.canIUse('hideHomeButton')) {
-      wx.hideHomeButton();
-    };
+  onShowed: function () {
+    console.log("onShowed");
   },
 
   /**

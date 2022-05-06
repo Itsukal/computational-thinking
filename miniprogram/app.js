@@ -1,4 +1,7 @@
 //app.js
+
+require('./page_public.js');
+
 App({
 
 	globalData:({

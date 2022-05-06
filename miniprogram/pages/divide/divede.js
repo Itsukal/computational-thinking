@@ -323,10 +323,8 @@ Page({
     })
   },
   
-  onShow: function () {
-    if (wx.canIUse('hideHomeButton')) {
-      wx.hideHomeButton();
-    };
+  onShowed: function () {
+    
   },
 
   
