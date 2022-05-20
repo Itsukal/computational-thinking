@@ -324,7 +324,7 @@ Page({
   },
   
   onShowed: function () {
-    
+    console.log("divide:onShow");
   },
 
   

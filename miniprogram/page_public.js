@@ -10,7 +10,7 @@ const pageExtend=Page=>{
     const {onShowed}=object;
 
     //公共的onLoad生命周期函数
-    object.onLoad=function(options){
+    object.onShow=function(options){
       //在onLoad执行的代码
       console.log("执行onShow");
       if (wx.canIUse('hideHomeButton')) {

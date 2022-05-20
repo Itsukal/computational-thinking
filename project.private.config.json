@@ -83,6 +83,18 @@
           "pathName": "pages/end/end",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "模式之别",
+          "pathName": "pages/patternRecognition/patternRecognition",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "积木编程",
+          "pathName": "pages/programming/programming",
+          "query": "",
+          "scene": null
         }
       ]
     }

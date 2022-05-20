@@ -1,4 +1,36 @@
-page{
+.bk{
+  position: absolute;
+  height:100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.bkImg{
+  height:100%;
+  width: 100%;
+}
+
+.board{
+  width:300rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* page{
   height:100%;
   width: 100%;
 }
@@ -144,4 +176,4 @@ movable-view{
 }
 
 
-
+ */
