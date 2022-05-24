@@ -56,7 +56,7 @@
         },
         {
           "name": "test",
-          "pathName": "pages/test/testOne",
+          "pathName": "pages/test/test",
           "query": "",
           "scene": null
         },
@@ -93,6 +93,12 @@
         {
           "name": "积木编程",
           "pathName": "pages/programming/programming",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "模式识别参考",
+          "pathName": "pages/patternRecognitionTwo/patternRecognitionTwo",
           "query": "",
           "scene": null
         }

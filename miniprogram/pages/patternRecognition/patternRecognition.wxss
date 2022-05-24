@@ -11,9 +11,19 @@
 }
 
 .board{
-  width:300rpx;
+  width:240rpx;
 }
 
+
+.moveArea{
+  z-index: 2;
+  top:0;
+  position: absolute;
+  /* left: 0;right: 0;
+  margin:auto; */
+  height: 100%;
+  width: 100%;
+}
 
 
 

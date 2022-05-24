@@ -7,10 +7,18 @@
 <view style="height:100rpx"></view>
 
 <!-- 要写个动态的board的css样式 -->
-<view class="board" style="margin-left:100rpx">
-  <image wx:for="{{board}}" wx:key="unique" src="./pattern/槽.png" style="{{item==1?boardImageStyle.style:boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
-  
+<view style="{{board.boardStyle}}">
+  <image wx:for="{{board.chessBoard}}" wx:key="unique" src="./pattern/槽.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
 </view>
 
+<movable-area class="moveArea">
+  <!--第一个方块-->
+  <movable-view class="block1" bindchange="blockMove1" direction="all" x="{{x1}}" y="{{y1}}">
+  <view class="board">
+   <image wx:for="{{board.chessBoard}}" wx:key="unique" src="./pattern/基础值.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
+   </view>
+   <!-- <image  src="./pattern/基础值.png" style="{{true?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image> -->
+  </movable-view>
+</movable-area>
 
 

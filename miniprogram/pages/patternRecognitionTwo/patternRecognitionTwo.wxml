@@ -15,24 +15,14 @@
   
     <!--第一个方块-->
     <movable-view class="block1" bindchange="blockMove1" direction="all" x="{{x1}}" y="{{y1}}">
-      <image class="image1" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/1.png" style="transform: rotate({{di1}}deg)"></image>
+      <view class="board" style="margin-left:100rpx;">
+  <image wx:for="{{board.chessBoard}}" wx:key="unique" src="../patternRecognition/pattern/槽.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
+    </view>
     </movable-view>
-
-    <!--第二个方块-->
-    <movable-view class="block2" bindchange="blockMove2" direction="all" x="{{x2}}" y="{{y2}}">
-      <image class="image2" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/2.png" style="transform: rotate({{di2}}deg)"></image>
-    </movable-view>
-    
-    <!--第三个方块-->
-    <movable-view class="block3" bindchange="blockMove3" direction="all" x="{{x3}}" y="{{y3}}">
-      <image class="image3" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/3.png" style="transform: rotate({{di3}}deg)"></image>
-    </movable-view>
-
-    <!--第四个方块-->
-    <movable-view class="block4" bindchange="blockMove4" direction="all" x="{{x4}}" y="{{y4}}">
-      <image class="image4" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/4.png" style="transform: rotate({{di4}}deg)"></image>
-    </movable-view>   
 </movable-area>
+
+
+
 <button class="reBut" bind:touchstart="reStart" bind:touchend="recover" style="left:{{releft+37}}px"></button>
 <button class="subBut" bind:touchstart="submit" bind:touchend="recover" style="left:{{releft+140}}px"></button>
 <image class="cue" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/cue.png" mode="aspectFit" style="left:{{releft+145}}px"></image>
