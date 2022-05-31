@@ -1,0 +1,6 @@
+/* movable-area {
+  pointer-events: none;
+}
+movable-view {
+   pointer-events: auto;
+} */

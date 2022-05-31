@@ -1,6 +1,6 @@
 //拼图页面的积木方块
 
-export {chessBoard};
+export {chessBoard,totalBlock};
 
 //棋盘类
 class chessBoard{
@@ -23,7 +23,7 @@ class chessBoard{
     //棋盘右下角坐标
 
     //棋盘的大小状态
-    boardStyle="width:240rpx;margin-left:100rpx;";
+    boardStyle="width:240rpx;padding-left:70rpx;";
 
     //棋盘每个方格的状态，是否隐藏起来
     boardImageStyle={
@@ -50,6 +50,7 @@ class block{
     //槽图片的坐标
 
     //槽是否被占据
+    
 }
 
 //积木类，管理着整个，由多个方块组装起来的拼图
@@ -64,8 +65,27 @@ class totalBlock{
     nums=0;
 
     //坐标
-    x=0;y=0;
+    vertex={
+        x:0,
+        y:0
+    };
 
+    //样式
+    style="width:300rpx";
+
+
+    //构造函数
+    constructor(object)
+    {
+        console.log("object:");
+        console.log(object);
+        this.array=object.array;
+        this.length=object.length;
+        this.width=object.width;
+        this.vertex.x=object.x;
+        this.vertex.y=object.y;
+       
+    }
     
 
 

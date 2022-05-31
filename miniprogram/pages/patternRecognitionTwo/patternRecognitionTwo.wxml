@@ -1,3 +1,4 @@
+
 <view class="bk">
   <image class="bkImg" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/bk.jpg" mode="aspectFill"></image>
 </view>
@@ -15,14 +16,9 @@
   
     <!--第一个方块-->
     <movable-view class="block1" bindchange="blockMove1" direction="all" x="{{x1}}" y="{{y1}}">
-      <view class="board" style="margin-left:100rpx;">
-  <image wx:for="{{board.chessBoard}}" wx:key="unique" src="../patternRecognition/pattern/槽.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
-    </view>
+      <image class="image1" src="../patternRecognition/pattern/槽.png" style="{{style}};transform: rotate({{di1}}deg)"></image>
     </movable-view>
 </movable-area>
-
-
-
 <button class="reBut" bind:touchstart="reStart" bind:touchend="recover" style="left:{{releft+37}}px"></button>
 <button class="subBut" bind:touchstart="submit" bind:touchend="recover" style="left:{{releft+140}}px"></button>
 <image class="cue" src="cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/cue.png" mode="aspectFit" style="left:{{releft+145}}px"></image>

@@ -1,5 +1,6 @@
 
 <!-- 背景 -->
+<body>
 <view class="bk">
   <image class="bkImg" src="./pattern/patternBk.png" mode="aspectFill"></image>
 </view>
@@ -11,14 +12,20 @@
   <image wx:for="{{board.chessBoard}}" wx:key="unique" src="./pattern/槽.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
 </view>
 
+
 <movable-area class="moveArea">
   <!--第一个方块-->
-  <movable-view class="block1" bindchange="blockMove1" direction="all" x="{{x1}}" y="{{y1}}">
-  <view class="board">
-   <image wx:for="{{board.chessBoard}}" wx:key="unique" src="./pattern/基础值.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
+  <movable-view out-of-bounds="true" bindchange="blockMove1" direction="all" x="{{totalBlock_1.vertex.x}}" y="{{totalBlock_1.vertex.y}}">
+  <view style="{{totalBlock_1.style}}">
+   <image wx:for="{{totalBlock_1.array}}" wx:key="unique" src="./pattern/乘法.png" style="{{item==1?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}};" mode="widthFix"></image>
+   <!-- <image src="./pattern/基础值.png" style="{{true?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}};transform:rotate({{di1}}deg); " mode="widthFix"></image> -->
    </view>
+   <!-- <view style="{{board.boardStyle}}">
+   <image  src="./pattern/基础值.png" style="{{true?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image>
+   </view> -->
    <!-- <image  src="./pattern/基础值.png" style="{{true?board.boardImageStyle.style:board.boardImageStyle.hiddenStyle}}" mode="widthFix"></image> -->
   </movable-view>
 </movable-area>
-
+<button style="z-index:3" bindtap="click" >按钮</button>
+</body>
 

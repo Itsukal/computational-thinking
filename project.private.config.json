@@ -101,6 +101,12 @@
           "pathName": "pages/patternRecognitionTwo/patternRecognitionTwo",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "汉诺塔",
+          "pathName": "pages/divide/divede",
+          "query": "",
+          "scene": null
         }
       ]
     }

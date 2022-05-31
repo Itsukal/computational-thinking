@@ -11,13 +11,8 @@ var di1=0,di2=0,di3=0,di4=0;//方块旋转方向
 var rnb=0;//最后一次点击的方块
 var scrWid;//屏幕宽度
 var leftV;//通过屏幕宽度计算所得左边位置
-
-import {chessBoard} from '../../class/patternClass.js';
-let tempBoardArray=[1,1,1,0,1,1,1,0,1,1];
-let board=new chessBoard(tempBoardArray);
 Page({
   data:{
-    board:board,
     x1:167.8,y1:385.6,
     x2:27.9,y2:342.6,
     x3:61.8,y3:418.6,
@@ -30,6 +25,7 @@ Page({
     sub:'',
     rev:'cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/rev.png',
     releft:0,
+    style:"width:500rpx",
   },
   timer: function () {
     var that = this;
@@ -95,34 +91,14 @@ Page({
   },
 
   blockMove1:function(e){
-    console.log(e);
     rnb=1;
     xx1=e.detail.x;
     yy1=e.detail.y;
     console.log('xx1:'+xx1);
     console.log('yy1:'+yy1);
   },
-  // blockMove2:function(e){
-  //   rnb=2;
-  //   xx2=e.detail.x;
-  //   yy2=e.detail.y;
-  //   console.log('xx2:'+xx2);
-  //   console.log('yy2:'+yy2);
-  // },
-  // blockMove3:function(e){
-  //   rnb=3;
-  //   xx3=e.detail.x;
-  //   yy3=e.detail.y;
-  //   console.log('xx3:'+xx3);
-  //   console.log('yy3:'+yy3);
-  // },
-  // blockMove4:function(e){
-  //   rnb=4;
-  //   xx4=e.detail.x;
-  //   yy4=e.detail.y;
-  //   console.log('xx4:'+xx4);
-  //   console.log('yy4:'+yy4);
-  // },
+
+
   recoverPosition:function(){
     this.setData({
       x1:leftV+167.8,y1:385.6,
@@ -187,25 +163,5 @@ Page({
       that.setData({rev:'cloud://itsuka-2g3ncu8f726d1e3e.6974-itsuka-2g3ncu8f726d1e3e-1305410037/pattern/patternTwo/rev.png'});
      }, 200) //延迟时间 这里是1秒
   },
-  onShareTimeline(res){
-    console.log(res)
-    return {
-      title: '测试小程序分享至朋友圈',
-      path: '../begin/begin',
-      imageUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594374964481&di=3ceba827e91e126012c43de3887a58c7&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg'
-    }
-  },
-  onShareAppMessage: function(ops) {
-    return {
-      title: "分享卡片",
-      path: '../begin/begin',
-
-      }
-    },
-    onShow: function () {
-      if (wx.canIUse('hideHomeButton')) {
-        wx.hideHomeButton();
-      };
-    },
   
 })

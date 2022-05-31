@@ -1,24 +1,50 @@
 
-import {chessBoard} from '../../class/patternClass.js';
-let tempBoardArray=[1,1,1,0,1,1,1,0,1,1];
-let board=new chessBoard(tempBoardArray);
+import {chessBoard,totalBlock} from '../../class/patternClass.js';
+//棋盘
+let tempBoardArray={
+  array:[1,1,1,0,1,1,1,0,1,1]
+}
+let board=new chessBoard(tempBoardArray.array);
+
+//————————————积木块
+//积木块1
+let block_1_object={
+  array:[1,1,1],
+  length:1,
+  width:3,
+  x:0,
+  y:222.9,
+};
+let totalBlock_1=new totalBlock(block_1_object);
+
+//积木块2
 
 
-
-var xx1=167.8,yy1=385.6;
 Page({
   data:{
     //棋盘
     board:board,
-    x1:32.5,y1:265.5,
+    //积木块
+    totalBlock_1:totalBlock_1,
+    di1:0,
   },
 
+  //积木块一的移动函数
   blockMove1:function(e){
     console.log(e);
-    xx1=e.detail.x;
-    yy1=e.detail.y;
-    console.log('xx1:'+xx1);
-    console.log('yy1:'+yy1);
+    this.data.totalBlock_1.vertex.x=e.detail.x;
+    this.data.totalBlock_1.vertex.y=e.detail.y;
+
+    console.log('x:'+this.data.totalBlock_1.vertex.x);
+    console.log('y:'+this.data.totalBlock_1.vertex.y);
   },
 
+  //旋转按钮
+  click:function(){
+    console.log("按下");
+    this.setData({
+      ['totalBlock_1.array']:[1,0,0,1,0,0,1],
+
+    })
+  }
 })
