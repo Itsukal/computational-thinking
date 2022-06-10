@@ -57,9 +57,13 @@ class block{
 class totalBlock{
     //描述形状的矩阵
     array=[];
-
-    //矩阵的长和宽
-    length=0;width=0;
+    //过滤后的矩阵
+    clearArray=[];
+    //矩阵的长和宽，为了后面旋转矩阵用
+    arrayLength={
+        rowLength:0,
+        columnLength:0,
+    };
 
     //组装的方块总数
     nums=0;
@@ -80,15 +84,22 @@ class totalBlock{
         console.log("object:");
         console.log(object);
         this.array=object.array;
-        this.length=object.length;
-        this.width=object.width;
+        this.clearArray=this.array;
         this.vertex.x=object.x;
         this.vertex.y=object.y;
+
+        //储存矩阵长宽
+       let rowLength=object.array.length;
+       let columnLength=0;
+        if(rowLength!=0)
+        {
+            columnLength=object.array[0].length;
+        }
+        this.arrayLength.rowLength=rowLength;
+        this.arrayLength.columnLength=columnLength;
        
+
     }
-    
-
-
 }
 
 //组装成totalBlock的单个积木块
