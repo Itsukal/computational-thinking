@@ -11,8 +11,7 @@ let board=new chessBoard(tempBoardArray.array);
 //————————————积木块
 //积木块1
 let block_1_object={
-  array:[[1,1,1],[0,0,0],[0,0,0]],
-  // array:[1,1,1,0,0,0,0,0,0],
+  array:[[1,1,1],[0,1,0],[1,1,0]],
   length:1,
   width:3,
   x:0,
@@ -167,5 +166,9 @@ Page({
     })
 
     // rotate(this.data.totalBlock_1.array);
+  },
+
+  confirmAnswer:function(){
+    
   }
 })
